@@ -1,1 +1,3266 @@
-
+[
+    {
+        "id": "3fcddd7b2d8eaf37",
+        "type": "tab",
+        "label": "SCADA PM2230 - Pro",
+        "disabled": false,
+        "info": "Dashboard professionnel SCADA - PM2230 Schneider Electric - Toutes mesures, jauges, courbes, diagnostics par onglet"
+    },
+    {
+        "id": "518638687e872c7c",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_ov_header",
+        "name": "CSS Global Pro",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n:root{--bg:#0a1929;--bg2:#0d1b2a;--panel:#152238;--panel2:#1a2c47;--accent:#00bcd4;--accent2:#00e5ff;--ok:#4caf50;--warn:#ff9800;--err:#f44336;--muted:#90a4ae;--text:#e0e6ed;}\nbody,.nr-dashboard,.nr-dashboard-theme.theme-dark{background:var(--bg)!important;color:var(--text)!important;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif!important;}\n.nr-dashboard-cardpanel{background:transparent!important;}\nmd-toolbar.md-default-theme:not(.md-menu-toolbar),md-toolbar:not(.md-menu-toolbar){background:linear-gradient(135deg,#0a1929,#1b263b)!important;border-bottom:3px solid var(--accent)!important;box-shadow:0 4px 20px rgba(0,188,212,.3)!important;}\n.md-toolbar-tools h2{font-weight:600!important;letter-spacing:1.5px;color:#fff!important;}\nmd-sidenav,.md-sidenav-left{background:#0d1b2a!important;border-right:1px solid var(--accent)!important;}\nmd-sidenav md-list md-list-item,md-sidenav md-list md-list-item .md-button{color:#cfd8dc!important;border-left:3px solid transparent;transition:.3s;}\nmd-sidenav md-list md-list-item:hover,md-sidenav md-list md-list-item .md-button:hover{background:rgba(0,188,212,.12)!important;border-left:3px solid var(--accent)!important;color:#fff!important;}\nmd-sidenav md-list md-list-item.active,md-sidenav md-list md-list-item .md-button.active{background:rgba(0,188,212,.2)!important;border-left:3px solid var(--accent2)!important;}\n.nr-dashboard-theme ui-card-panel{background:linear-gradient(145deg,#152238,#0d1b2a)!important;border:1px solid rgba(0,188,212,.25)!important;border-radius:10px!important;box-shadow:0 6px 22px rgba(0,0,0,.45),0 0 0 1px rgba(0,188,212,.08) inset!important;margin:4px!important;}\n.nr-dashboard-theme ui-card-panel p.nr-dashboard-cardtitle{color:var(--accent)!important;font-weight:600!important;font-size:13px!important;letter-spacing:1.2px;text-transform:uppercase;padding:8px 12px!important;border-bottom:1px solid rgba(0,188,212,.2)!important;margin:0!important;background:rgba(0,188,212,.04)!important;}\n.nr-dashboard-theme .nr-dashboard-gauge svg text{fill:var(--text)!important;}\n.nr-dashboard-theme .nr-dashboard-chart svg text{fill:var(--text)!important;}\n.nr-dashboard-theme .nr-dashboard-chart .nv-axis path,.nr-dashboard-theme .nr-dashboard-chart .nv-axis line{stroke:rgba(255,255,255,.15)!important;}\n.scada-header{background:linear-gradient(135deg,#0a1929,#1b263b);border-bottom:3px solid var(--accent);padding:14px 22px;display:flex;justify-content:space-between;align-items:center;color:#fff;border-radius:8px;margin-bottom:6px;}\n.kpi-tile{background:linear-gradient(145deg,#152238,#0d1b2a);border:1px solid rgba(0,188,212,.35);border-radius:12px;padding:14px 16px;text-align:left;box-shadow:0 4px 18px rgba(0,0,0,.5),0 0 0 1px rgba(0,188,212,.08) inset;position:relative;overflow:hidden;height:100%;}\n.kpi-tile::before{content:'';position:absolute;top:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));}\n.kpi-tile .label{color:var(--muted);font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:600;}\n.kpi-tile .value{font-family:'JetBrains Mono','Consolas',monospace;font-size:30px;font-weight:700;color:var(--accent);line-height:1.1;margin-top:6px;}\n.kpi-tile .value small{font-size:14px;color:var(--muted);font-weight:500;margin-left:4px;}\n.kpi-tile .sub{font-size:11px;color:var(--muted);margin-top:4px;}\n.kpi-tile.ok .value{color:var(--ok);}.kpi-tile.warn .value{color:var(--warn);}.kpi-tile.err .value{color:var(--err);}\n.led{width:14px;height:14px;border-radius:50%;display:inline-block;box-shadow:0 0 12px currentColor;animation:pulse 2s infinite;}\n@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.65;transform:scale(.92);}}\n.badge{display:inline-block;padding:3px 9px;border-radius:10px;font-size:10px;letter-spacing:1px;font-weight:700;}\n.badge.ok{background:rgba(76,175,80,.18);color:var(--ok);border:1px solid var(--ok);}\n.badge.warn{background:rgba(255,152,0,.18);color:var(--warn);border:1px solid var(--warn);}\n.badge.err{background:rgba(244,67,54,.18);color:var(--err);border:1px solid var(--err);}\ntable.scada{width:100%;border-collapse:collapse;color:var(--text);font-size:12px;}\ntable.scada th{background:rgba(0,188,212,.1);color:var(--accent);font-weight:600;letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid rgba(0,188,212,.3);}\ntable.scada td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.05);}\ntable.scada tr:hover td{background:rgba(0,188,212,.05);}\n.mini-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px;}\n.mini-bar > div{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s;}\n.mono{font-family:'JetBrains Mono','Consolas',monospace;}\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": false,
+        "resendOnRefresh": false,
+        "templateScope": "global",
+        "className": "",
+        "x": 340,
+        "y": 3820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c1426b31b1300a43",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_ov_header",
+        "name": "Header Vue d'ensemble",
+        "order": 1,
+        "width": 24,
+        "height": 2,
+        "format": "<div class=\"scada-header\">\n  <div style=\"display:flex;align-items:center;gap:18px;\">\n    <span style=\"font-size:38px;\">⚡</span>\n    <div>\n      <div style=\"font-size:20px;font-weight:700;letter-spacing:2px;\">SUPERVISION ÉNERGÉTIQUE</div>\n      <div style=\"font-size:12px;color:#00bcd4;letter-spacing:1px;\">PM2230 • Schneider Electric • Modbus TCP • Temps Réel</div>\n    </div>\n  </div>\n  <div style=\"text-align:right;\">\n    <div id=\"clk_t\" class=\"mono\" style=\"font-size:24px;color:#00e5ff;\"></div>\n    <div id=\"clk_d\" style=\"font-size:11px;color:#90a4ae;\"></div>\n  </div>\n</div>\n<script>\n(function(scope){\n  function pad(n){return n<10?'0'+n:n;}\n  function tick(){\n    var d=new Date();\n    var t=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());\n    var ds=d.toLocaleDateString('fr-FR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});\n    var et=document.getElementById('clk_t'); if(et) et.innerText=t;\n    var ed=document.getElementById('clk_d'); if(ed) ed.innerText=ds;\n  }\n  tick(); setInterval(tick,1000);\n})(scope);\n</script>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 340,
+        "y": 3860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c1ced6374dc35b3",
+        "type": "inject",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Polling 2s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "8dfd234b4b8864bd",
+                "1dd486af306b91cf",
+                "48bc441ab0b7b93b",
+                "1d4be2b942f21c52"
+            ]
+        ]
+    },
+    {
+        "id": "9315e4319940e621",
+        "type": "inject",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Watchdog 1s",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "watchdog",
+        "payload": "",
+        "payloadType": "date",
+        "x": 320,
+        "y": 2380,
+        "wires": [
+            [
+                "f34d36b27475b3b4",
+                "981dec58d08c4237",
+                "d9c548eeeed7246f",
+                "5b41f3fe2d1e3283"
+            ]
+        ]
+    },
+    {
+        "id": "8dfd234b4b8864bd",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Lecture Tensions [3019-3036]",
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "3019",
+        "quantity": "18",
+        "rate": "2",
+        "rateUnit": "s",
+        "server": "modbus_pm2230_scada",
+        "x": 500,
+        "y": 180,
+        "wires": [
+            [
+                "aad35172a8dfaf67"
+            ],
+            [
+                "da9c9eca4110c3fd"
+            ]
+        ]
+    },
+    {
+        "id": "1dd486af306b91cf",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Lecture Courants [2999-3010]",
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "2999",
+        "quantity": "12",
+        "rate": "2",
+        "rateUnit": "s",
+        "server": "modbus_pm2230_scada",
+        "x": 460,
+        "y": 440,
+        "wires": [
+            [
+                "51b3e2c3ddea33cd"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "48bc441ab0b7b93b",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Lecture Puissances [3053-3084]",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "3053",
+        "quantity": "32",
+        "rate": "2",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "modbus_pm2230_scada",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 470,
+        "y": 760,
+        "wires": [
+            [
+                "c463057c84d9e993"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1d4be2b942f21c52",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Lecture Fréquence [3109]",
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "3109",
+        "quantity": "2",
+        "rate": "2",
+        "rateUnit": "s",
+        "server": "modbus_pm2230_scada",
+        "x": 430,
+        "y": 1080,
+        "wires": [
+            [
+                "4e8dc5f5bcae6f48"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "287a888355a1a335",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Lecture Énergie [3203]",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "3203",
+        "quantity": "4",
+        "rate": "2",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "modbus_pm2230_scada",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 420,
+        "y": 1320,
+        "wires": [
+            [
+                "39ed0dfe146b50cc"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "5df0a53a6f5537ba",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Puissances par phase (DÉSACTIVÉ - redondant + topologie 3-fils delta)",
+        "topic": "",
+        "showStatusActivities": true,
+        "logIOActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "3065",
+        "quantity": "24",
+        "rate": "2",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "modbus_pm2230_scada",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": true,
+        "x": 430,
+        "y": 2000,
+        "wires": [
+            [
+                "06135e253be80e51"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "aad35172a8dfaf67",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode Tensions",
+        "func": "function f32(arr,i){if(!arr||arr.length<i+2)return NaN;const b=Buffer.alloc(4);b.writeUInt16BE(arr[i]||0,0);b.writeUInt16BE(arr[i+1]||0,2);const v=b.readFloatBE(0);return isFinite(v)?v:0;}\nconst r=msg.payload;\nflow.set('lastSeen_v',Date.now());\nconst Vab=f32(r,0),Vbc=f32(r,2),Vca=f32(r,4),Vavg_LL=f32(r,6);\nconst Van=f32(r,8),Vbn=f32(r,10),Vcn=f32(r,12),Vavg_LN=f32(r,16);\nflow.set('Vab',Vab);flow.set('Vbc',Vbc);flow.set('Vca',Vca);flow.set('Vavg_LL',Vavg_LL);\nflow.set('Van',Van);flow.set('Vbn',Vbn);flow.set('Vcn',Vcn);flow.set('Vavg_LN',Vavg_LN);\nconst arrLL=[Vab,Vbc,Vca].filter(x=>x>0);\nconst maxLL=Math.max(...arrLL,0),minLL=Math.min(...arrLL,maxLL);\nflow.set('V_unbalance',maxLL>0?((maxLL-minLL)/maxLL*100):0);\nreturn [\n  {topic:'Vab',payload:Vab},{topic:'Vbc',payload:Vbc},{topic:'Vca',payload:Vca},{topic:'Vavg_LL',payload:Vavg_LL},\n  {topic:'Van',payload:Van},{topic:'Vbn',payload:Vbn},{topic:'Vcn',payload:Vcn},{topic:'Vavg_LN',payload:Vavg_LN}\n];",
+        "outputs": 8,
+        "x": 930,
+        "y": 180,
+        "wires": [
+            [
+                "f854e5abd1958c58",
+                "59308fcf37a132da",
+                "478a85ef25aed816"
+            ],
+            [
+                "1907520827217026",
+                "59308fcf37a132da",
+                "478a85ef25aed816"
+            ],
+            [
+                "089269fac3e0a737",
+                "59308fcf37a132da",
+                "478a85ef25aed816"
+            ],
+            [
+                "c16822e0710efac4"
+            ],
+            [
+                "d748616126112f84"
+            ],
+            [
+                "4e731dbe5a910719"
+            ],
+            [
+                "9efa06f979bb989a"
+            ],
+            [
+                "fea29352430a417c"
+            ]
+        ]
+    },
+    {
+        "id": "51b3e2c3ddea33cd",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode Courants",
+        "func": "function f32(arr,i){if(!arr||arr.length<i+2)return NaN;const b=Buffer.alloc(4);b.writeUInt16BE(arr[i]||0,0);b.writeUInt16BE(arr[i+1]||0,2);const v=b.readFloatBE(0);return isFinite(v)?v:0;}\nconst r=msg.payload;\nflow.set('lastSeen_i',Date.now());\nconst Ia=f32(r,0),Ib=f32(r,2),Ic=f32(r,4),In=f32(r,6),Iavg=f32(r,10);\nflow.set('Ia',Ia);flow.set('Ib',Ib);flow.set('Ic',Ic);flow.set('In',In);flow.set('Iavg',Iavg);\nconst maxI=Math.max(Ia,Ib,Ic),minI=Math.min(Ia,Ib,Ic);\nflow.set('I_unbalance',maxI>0?((maxI-minI)/maxI*100):0);\nreturn [\n  {topic:'Ia',payload:Ia},{topic:'Ib',payload:Ib},{topic:'Ic',payload:Ic},{topic:'In',payload:In},{topic:'Iavg',payload:Iavg}\n];",
+        "outputs": 5,
+        "x": 930,
+        "y": 440,
+        "wires": [
+            [
+                "47d1b1a46db7e22d",
+                "516ca34b7afbad73",
+                "55fbfe274ae702c3"
+            ],
+            [
+                "c041cdfc16312d40",
+                "516ca34b7afbad73",
+                "55fbfe274ae702c3"
+            ],
+            [
+                "96aaed3c65e3d8e6",
+                "516ca34b7afbad73",
+                "55fbfe274ae702c3"
+            ],
+            [
+                "0693c7a4682151b0"
+            ],
+            [
+                "ee86e41e89970d91"
+            ]
+        ]
+    },
+    {
+        "id": "c463057c84d9e993",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode Puissances",
+        "func": "// Decode puissances depuis adresse 3053 (Schneider 3054 = Pa)\n// Topologie: triphase sans neutre (3-wire delta)\n// -> Pa/Pb/Pc, Qa/Qb/Qc, Sa/Sb/Sc, PFa/PFb/PFc seront NaN (physique normale)\n// -> Seuls Ptot, Qtot, Stot, PFtot sont valides\n\nfunction f32(arr, i) {\n    if (!arr || arr.length < i+2) return null;\n    const b = Buffer.alloc(4);\n    b.writeUInt16BE(arr[i] & 0xFFFF, 0);\n    b.writeUInt16BE(arr[i+1] & 0xFFFF, 2);\n    const v = b.readFloatBE(0);\n    return Number.isFinite(v) ? v : null;\n}\n\nconst r = msg.payload;\n\nconst ctx = {\n    Pa: f32(r, 0),   Pb: f32(r, 2),   Pc: f32(r, 4),\n    P: f32(r, 6),    Ptot: f32(r, 6),\n    Qa: f32(r, 8),   Qb: f32(r, 10),  Qc: f32(r, 12),\n    Q: f32(r, 14),   Qtot: f32(r, 14),\n    Sa: f32(r, 16),  Sb: f32(r, 18),  Sc: f32(r, 20),\n    S: f32(r, 22),   Stot: f32(r, 22),\n    PFa: f32(r, 24), PFb: f32(r, 26), PFc: f32(r, 28),\n    PF: f32(r, 30),  PFtot: f32(r, 30),\n};\n\nflow.set('powers', ctx);\n\n// Exposer chaque cle au niveau flow context pour Agregation KPI\nfor (const k in ctx) {\n    if (ctx[k] !== null && Number.isFinite(ctx[k])) flow.set(k, ctx[k]);\n}\nflow.set('lastSeen_p', Date.now());\nflow.set('lastSeen_powers', Date.now());\n\nnode.status({\n    fill: 'green',\n    shape: 'dot',\n    text: `P=${ctx.P!=null?ctx.P.toFixed(3):'NaN'}kW PF=${ctx.PF!=null?ctx.PF.toFixed(2):'NaN'}`\n});\n\n// FIX CRITIQUE: retourner 4 messages separes (1 par sortie)\n// Sortie 1 -> jauge P + chart P/Q/S + chart Tendance P\n// Sortie 2 -> jauge Q + chart P/Q/S\n// Sortie 3 -> jauge S + chart P/Q/S\n// Sortie 4 -> jauge PF (cos phi)  <-- corrige le bug \"PF bloque a 0.000\"\nreturn [\n    { topic: 'P',  payload: ctx.Ptot  != null ? ctx.Ptot  : 0 },\n    { topic: 'Q',  payload: ctx.Qtot  != null ? ctx.Qtot  : 0 },\n    { topic: 'S',  payload: ctx.Stot  != null ? ctx.Stot  : 0 },\n    { topic: 'PF', payload: ctx.PFtot != null ? ctx.PFtot : 0 }\n];\n",
+        "outputs": 4,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 920,
+        "y": 780,
+        "wires": [
+            [
+                "bffc08ef9d19429c",
+                "f6d3b821dec8c3a2",
+                "f141c2cf2206d991",
+                "04d28340064fb793"
+            ],
+            [
+                "c7cea6aaf7681a38",
+                "f6d3b821dec8c3a2",
+                "04d28340064fb793"
+            ],
+            [
+                "90537c1a1892c867",
+                "f6d3b821dec8c3a2",
+                "04d28340064fb793"
+            ],
+            [
+                "55b9488deb4b7ca4"
+            ]
+        ]
+    },
+    {
+        "id": "4e8dc5f5bcae6f48",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode Fréquence",
+        "func": "function f32(arr,i){if(!arr||arr.length<i+2)return NaN;const b=Buffer.alloc(4);b.writeUInt16BE(arr[i]||0,0);b.writeUInt16BE(arr[i+1]||0,2);const v=b.readFloatBE(0);return isFinite(v)?v:0;}\nflow.set('lastSeen_f',Date.now());\nconst Hz=f32(msg.payload,0);\nflow.set('Hz',Hz);\nmsg.payload=Hz;\nreturn msg;",
+        "outputs": 1,
+        "x": 890,
+        "y": 1080,
+        "wires": [
+            [
+                "0dabfd4cf5b98e37",
+                "eafb04c2dc9a378b",
+                "725cf765045e3d2b"
+            ]
+        ]
+    },
+    {
+        "id": "39ed0dfe146b50cc",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode Énergie",
+        "func": "const r=msg.payload;\nif(!r||r.length<4)return null;\nflow.set('lastSeen_e',Date.now());\nconst b=Buffer.alloc(8);\nb.writeUInt16BE(r[0]||0,0);b.writeUInt16BE(r[1]||0,2);b.writeUInt16BE(r[2]||0,4);b.writeUInt16BE(r[3]||0,6);\nlet energy_kWh=Number(b.readBigInt64BE(0))/1000||0;  // Wh → kWh\nflow.set('Energy_kWh',energy_kWh);\nmsg.payload=energy_kWh;\nreturn msg;",
+        "outputs": 1,
+        "x": 880,
+        "y": 1320,
+        "wires": [
+            [
+                "437c0fd12ae3de60",
+                "70530be1828e119f"
+            ]
+        ]
+    },
+    {
+        "id": "06135e253be80e51",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode Puissances par phase",
+        "func": "function f32(arr,i){if(!arr||arr.length<i+2)return NaN;const b=Buffer.alloc(4);b.writeUInt16BE(arr[i]||0,0);b.writeUInt16BE(arr[i+1]||0,2);const v=b.readFloatBE(0);return isFinite(v)?v:0;}\nconst r=msg.payload;\nconst Pa=f32(r,0),Pb=f32(r,8),Pc=f32(r,16);\nflow.set('Pa',Pa);flow.set('Pb',Pb);flow.set('Pc',Pc);\nreturn [{topic:'Pa',payload:Pa},{topic:'Pb',payload:Pb},{topic:'Pc',payload:Pc}];",
+        "outputs": 3,
+        "x": 890,
+        "y": 2000,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f34d36b27475b3b4",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Watchdog Communication",
+        "func": "const now=Date.now(),threshold=8000;\nconst lastMax=Math.max(flow.get('lastSeen_v')||0,flow.get('lastSeen_i')||0,flow.get('lastSeen_p')||0,flow.get('lastSeen_f')||0,flow.get('lastSeen_e')||0,flow.get('lastSeen_thd')||0);\nconst age=now-lastMax;\nlet status='offline',color='#f44336',text='HORS LIGNE';\nif(lastMax===0){status='init';color='#90a4ae';text='INITIALISATION';}\nelse if(age<threshold){status='online';color='#4caf50';text='EN LIGNE';}\nelse if(age<threshold*3){status='degraded';color='#ff9800';text='DÉGRADÉ';}\nflow.set('commStatus',status);\nflow.set('commColor',color);\nflow.set('commText',text);\nflow.set('commLastUpdate',new Date(lastMax).toLocaleTimeString('fr-FR'));\nflow.set('commAge',age);\nreturn {payload:{status,color,text,age,lastUpdate:new Date(lastMax).toLocaleTimeString('fr-FR')}};",
+        "outputs": 1,
+        "x": 980,
+        "y": 2220,
+        "wires": [
+            [
+                "df2b25155d239a37",
+                "087c73ee726a5e77"
+            ]
+        ]
+    },
+    {
+        "id": "725cf765045e3d2b",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Calcul Moteur",
+        "func": "// === Calcul des grandeurs du moteur asynchrone ===\n// Entree : Hz (frequence reseau), Ptot (puissance active reseau)\n// Sortie : Ns synchrone, Nr rotor, glissement, couple, etat\n//\n// FIX: 4 sorties separees pour alimenter correctement les jauges (nombres)\n//      et les templates (objet complet).\n\nconst f    = flow.get('Hz') || 50;\nconst p    = flow.get('motor_poles') || 4;\nconst Ptot = flow.get('Ptot') || 0;\nconst eff  = flow.get('motor_eff') || 0.92;\nconst Pn   = flow.get('motor_Pn')  || 15;\n\nconst Ns      = (120 * f) / p;\nconst load    = Pn > 0 ? Math.abs(Ptot) / Pn : 0;\nconst slip    = Math.max(0, Math.min(0.06, load * 0.04));\nconst Nr      = Ns * (1 - slip);\nconst omega_r = 2 * Math.PI * Nr / 60;\nconst Pmech   = Math.abs(Ptot) * eff;\nconst couple  = omega_r > 0 ? (Pmech * 1000) / omega_r : 0;\n\nlet etat = 'ARRET', color = '#90a4ae';\nif      (Math.abs(Ptot) < 0.2) { etat = 'ARRET';        color = '#90a4ae'; }\nelse if (load < 0.4)           { etat = 'SOUS-CHARGE';  color = '#ff9800'; }\nelse if (load > 1.1)           { etat = 'SURCHARGE';    color = '#f44336'; }\nelse                           { etat = 'NORMAL';       color = '#4caf50'; }\n\n// Expose au flow context pour Agregation KPI / InfluxDB\nflow.set('Ns', Ns);\nflow.set('Nr', Nr);\nflow.set('slip', slip * 100);\nflow.set('couple_Nm', couple);\nflow.set('P_mech_kW', Pmech);\nflow.set('moteur_etat',  etat);\nflow.set('moteur_color', color);\nflow.set('moteur_load',  load * 100);\n\nconst objet = { Ns, Nr, slip: slip * 100, couple, Pmech, etat, color, load: load * 100 };\n\nnode.status({\n    fill: color === '#90a4ae' ? 'grey' : (etat === 'NORMAL' ? 'green' : 'yellow'),\n    shape: 'dot',\n    text: `${etat} Nr=${Nr.toFixed(0)}tr/min C=${couple.toFixed(1)}Nm`\n});\n\nreturn [\n    { payload: objet  },   // sortie 1 -> templates (Etat Moteur, Courbe T(N))\n    { topic: 'Ns',     payload: Ns },     // sortie 2 -> jauge Ns\n    { topic: 'Nr',     payload: Nr },     // sortie 3 -> jauge Nr + chart\n    { topic: 'Couple', payload: couple }, // sortie 4 -> jauge Couple\n];\n",
+        "outputs": 4,
+        "x": 1680,
+        "y": 1100,
+        "wires": [
+            [
+                "5249916f6c7a2502",
+                "222b7d026a1bae8e"
+            ],
+            [
+                "04b88f6ab7a62b07"
+            ],
+            [
+                "1641ff5bcc3ae7d5",
+                "a745defaa177c4bc"
+            ],
+            [
+                "eb06a85c39e11feb"
+            ]
+        ]
+    },
+    {
+        "id": "981dec58d08c4237",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Détection Alarmes",
+        "func": "const Vavg=flow.get('Vavg_LN')||0;\nconst Iavg=flow.get('Iavg')||0;\nconst PF=flow.get('PFtot')||1;\nconst Hz=flow.get('Hz')||50;\nconst THD_V=flow.get('THD_Vavg')||0;\nconst THD_I=flow.get('THD_Iavg')||0;\nconst V_unb=flow.get('V_unbalance')||0;\nconst I_unb=flow.get('I_unbalance')||0;\nconst comm=flow.get('commStatus')||'offline';\nconst sV=flow.get('seuil_V_max')||253;\nconst sVmin=flow.get('seuil_V_min')||207;\nconst sI=flow.get('seuil_I_max')||80;\nconst sPF=flow.get('seuil_PF_min')||0.85;\nconst sTHD=flow.get('seuil_THD')||8;\nconst sUnb=flow.get('seuil_unb')||5;\nconst alarms=[];\nfunction add(level,code,msg,val){alarms.push({level,code,msg,val,ts:new Date().toLocaleTimeString('fr-FR')});}\nif(comm==='offline')add('err','COM-01','Communication Modbus perdue','');\nelse if(comm==='degraded')add('warn','COM-02','Communication dégradée','');\nif(Vavg>0&&Vavg>sV)add('err','V-01','Surtension réseau',Vavg.toFixed(1)+' V');\nif(Vavg>0&&Vavg<sVmin)add('err','V-02','Sous-tension réseau',Vavg.toFixed(1)+' V');\nif(Iavg>sI)add('err','I-01','Surintensité',Iavg.toFixed(1)+' A');\nif(PF>0&&PF<sPF)add('warn','PF-01','Facteur de puissance faible',PF.toFixed(3));\nif(Hz>0&&(Hz<49||Hz>51))add('warn','F-01','Fréquence hors plage',Hz.toFixed(2)+' Hz');\nif(THD_V>sTHD)add('warn','THD-V','Distorsion tension élevée',THD_V.toFixed(1)+' %');\nif(THD_I>sTHD*2)add('warn','THD-I','Distorsion courant élevée',THD_I.toFixed(1)+' %');\nif(V_unb>sUnb)add('warn','UNB-V','Déséquilibre tension',V_unb.toFixed(1)+' %');\nif(I_unb>sUnb*3)add('warn','UNB-I','Déséquilibre courant',I_unb.toFixed(1)+' %');\nconst nbErr=alarms.filter(a=>a.level==='err').length;\nconst nbWarn=alarms.filter(a=>a.level==='warn').length;\nflow.set('alarms',alarms);\nflow.set('nbErr',nbErr);\nflow.set('nbWarn',nbWarn);\nconst hist=context.get('alarm_history')||[];\nconst lastKey=context.get('last_alarm_key')||'';\nconst key=alarms.map(a=>a.code).join(',');\nif(key!==lastKey&&alarms.length>0){alarms.forEach(a=>{hist.unshift(Object.assign({},a));});if(hist.length>50)hist.length=50;context.set('alarm_history',hist);context.set('last_alarm_key',key);}\nflow.set('alarm_history',hist);\nreturn [{payload:{active:alarms,nbErr,nbWarn,nbTotal:alarms.length}},{payload:hist},{payload:{nbErr,nbWarn,nbTotal:alarms.length}}];",
+        "outputs": 3,
+        "x": 950,
+        "y": 2360,
+        "wires": [
+            [
+                "3eea80ee2fe6e993",
+                "8f0434e78c1a7da3"
+            ],
+            [
+                "185ccf3b4828de6b"
+            ],
+            [
+                "384d0f9561e56fcf"
+            ]
+        ]
+    },
+    {
+        "id": "d9c548eeeed7246f",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Agrégation KPI",
+        "func": "const data = {\n    P:  flow.get('Ptot') || 0,\n    Q:  flow.get('Qtot') || 0,\n    S:  flow.get('Stot') || 0,\n    PF: flow.get('PFtot') || 0,\n    E:  flow.get('Energy_kWh') || 0,\n    Hz: flow.get('Hz') || 0,\n    Vab: flow.get('Vab') || 0, Vbc: flow.get('Vbc') || 0,\n    Vca: flow.get('Vca') || 0, Vavg: flow.get('Vavg_LL') || 0,\n    Van: flow.get('Van') || 0, Vbn: flow.get('Vbn') || 0,\n    Vcn: flow.get('Vcn') || 0, VavgLN: flow.get('Vavg_LN') || 0,\n    Ia: flow.get('Ia') || 0, Ib: flow.get('Ib') || 0,\n    Ic: flow.get('Ic') || 0, In: flow.get('In') || 0,\n    Iavg: flow.get('Iavg') || 0,\n\n    // THD : moyennes (compat) + valeurs par phase (nouveau)\n    THD_V:  flow.get('THD_Vavg') || 0,\n    THD_I:  flow.get('THD_Iavg') || 0,\n    THD_Va: flow.get('THD_Va')   || 0,\n    THD_Vb: flow.get('THD_Vb')   || 0,\n    THD_Vc: flow.get('THD_Vc')   || 0,\n    THD_Ia: flow.get('THD_Ia')   || 0,\n    THD_Ib: flow.get('THD_Ib')   || 0,\n    THD_Ic: flow.get('THD_Ic')   || 0,\n\n    V_unb: flow.get('V_unbalance') || 0,\n    I_unb: flow.get('I_unbalance') || 0,\n    commColor:  flow.get('commColor')  || '#90a4ae',\n    commText:   flow.get('commText')   || 'INIT',\n    commUpdate: flow.get('commLastUpdate') || '--:--:--',\n    nbErr:  flow.get('nbErr')  || 0,\n    nbWarn: flow.get('nbWarn') || 0,\n    Pa: flow.get('Pa') || 0, Pb: flow.get('Pb') || 0, Pc: flow.get('Pc') || 0\n};\nreturn { payload: data };\n",
+        "outputs": 1,
+        "x": 980,
+        "y": 3100,
+        "wires": [
+            [
+                "4795d4b637747895",
+                "5d9a77fa05e5da04",
+                "b7ab1198452e2f8a",
+                "cef0f4053dcb6d64",
+                "fcd8bf3a5a78bdc6",
+                "2c9667dabd5ffa96",
+                "cfad9341a5e40363",
+                "35bf6b6176e0f1ed",
+                "c55a8ae785068063",
+                "9cdbb662bd90315e",
+                "a33be1c432865e07",
+                "ea22e92f65dccd8b",
+                "69a59aec82847c1b",
+                "9c5e2198d1d9ca63",
+                "b84687835ad20f1c",
+                "660a47fb943b4ee8"
+            ]
+        ]
+    },
+    {
+        "id": "b84687835ad20f1c",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "→ Long Schema (InfluxDB v2)",
+        "func": "// =========================================================================\n// PM2230 → InfluxDB v2 : transformateur wide→long schema\n// Entrée  : msg.payload = {Van,Vbn,Vcn,Vab,Vbc,Vca,Vavg_LN,Vavg,Ia,Ib,Ic,In,Iavg,\n//                          P,Q,S,PF,E,Hz,Pa,Pb,Pc,THD_V,THD_I,V_unb,I_unb,...}\n// Sortie  : msg.payload = [ {measurement, tags, fields, timestamp}, ... ]\n// Cible   : node \"influxdb batch\" (multi-measurement par appel)\n// =========================================================================\nconst d = msg.payload || {};\nconst now = Date.now();\nconst points = [];\n\n// Filtre numérique strict (pas de NaN, pas d'undefined, pas de null)\nconst num = v => (typeof v === 'number' && Number.isFinite(v)) ? v : null;\n\n// Helper : pousse un point uniquement si AU MOINS un field exploitable\nconst push = (measurement, tags, fieldsObj) => {\n    const fields = {};\n    for (const k in fieldsObj) {\n        const v = num(fieldsObj[k]);\n        if (v !== null) fields[k] = v;\n    }\n    if (Object.keys(fields).length === 0) return;\n    points.push({ measurement, tags, fields, timestamp: now });\n};\n\n// ---------- Tensions Ligne-Neutre (V) ----------\npush('voltage', { phase: 'a',   type: 'ln' }, { value: d.Van });\npush('voltage', { phase: 'b',   type: 'ln' }, { value: d.Vbn });\npush('voltage', { phase: 'c',   type: 'ln' }, { value: d.Vcn });\npush('voltage', { phase: 'avg', type: 'ln' }, { value: d.VavgLN });\n\n// ---------- Tensions Ligne-Ligne (V) ----------\npush('voltage', { phase: 'ab',  type: 'll' }, { value: d.Vab });\npush('voltage', { phase: 'bc',  type: 'll' }, { value: d.Vbc });\npush('voltage', { phase: 'ca',  type: 'll' }, { value: d.Vca });\npush('voltage', { phase: 'avg', type: 'll' }, { value: d.Vavg });\n\n// ---------- Courants (A) ----------\npush('current', { phase: 'a'   }, { value: d.Ia });\npush('current', { phase: 'b'   }, { value: d.Ib });\npush('current', { phase: 'c'   }, { value: d.Ic });\npush('current', { phase: 'n'   }, { value: d.In });\npush('current', { phase: 'avg' }, { value: d.Iavg });\n\n// ---------- Puissances par phase (W / VAR) ----------\npush('power', { phase: 'a' }, { p: d.Pa });\npush('power', { phase: 'b' }, { p: d.Pb });\npush('power', { phase: 'c' }, { p: d.Pc });\n\n// ---------- Puissances totales (W / VAR / VA / pu) ----------\npush('power', { phase: 'total' }, {\n    p:  d.P,\n    q:  d.Q,\n    s:  d.S,\n    pf: d.PF\n});\n\n// ---------- Énergie cumulée (kWh) ----------\npush('energy', {}, { kwh: d.E });\n\n// ---------- Fréquence (Hz) ----------\npush('frequency', {}, { value: d.Hz });\n\n// ---------- Qualité : THD (%) ----------\npush('thd', { signal: 'voltage' }, { value: d.THD_V });\npush('thd', { signal: 'current' }, { value: d.THD_I });\n\n// ---------- Qualité : Déséquilibre (%) ----------\npush('unbalance', { signal: 'voltage' }, { value: d.V_unb });\npush('unbalance', { signal: 'current' }, { value: d.I_unb });\n\n// ---------- État communication Modbus ----------\nconst commState = (d.commText || 'INIT').toString().toUpperCase();\npoints.push({\n    measurement: 'comm_status',\n    tags: { state: commState.toLowerCase() },\n    fields: {\n        ok:       commState === 'OK' ? 1 : 0,\n        errors:   Number(d.nbErr)  || 0,\n        warnings: Number(d.nbWarn) || 0\n    },\n    timestamp: now\n});\n\nmsg.payload = points;\nnode.status({\n    fill:  points.length >= 24 ? 'green' : 'yellow',\n    shape: 'dot',\n    text:  `${points.length} pts @ ${new Date(now).toLocaleTimeString('fr-FR')}`\n});\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": "0",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1830,
+        "y": 2720,
+        "wires": [
+            [
+                "f4924bd2c22a08c5"
+            ]
+        ]
+    },
+    {
+        "id": "5b41f3fe2d1e3283",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Santé Système",
+        "func": "const comm=flow.get('commStatus')||'offline';\nconst nbErr=flow.get('nbErr')||0;\nconst nbWarn=flow.get('nbWarn')||0;\nconst age=flow.get('commAge')||0;\nlet score=100;\nif(comm==='offline')score-=60; else if(comm==='degraded')score-=25;\nscore-=nbErr*15;\nscore-=nbWarn*5;\nscore=Math.max(0,Math.min(100,score));\nlet color='#4caf50',label='OPTIMAL';\nif(score<40){color='#f44336';label='CRITIQUE';}\nelse if(score<70){color='#ff9800';label='DÉGRADÉ';}\nelse if(score<90){color='#ffc107';label='ATTENTION';}\nflow.set('healthScore',score);\nreturn {payload:{score,color,label,nbErr,nbWarn,comm,age}};",
+        "outputs": 1,
+        "x": 940,
+        "y": 2520,
+        "wires": [
+            [
+                "2c60a74ef2cfb951"
+            ]
+        ]
+    },
+    {
+        "id": "4795d4b637747895",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_ov_kpi",
+        "name": "KPI Overview Cards",
+        "order": 1,
+        "width": 24,
+        "height": 4,
+        "format": "<div style=\"display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:4px;\">\n  <div class=\"kpi-tile\">\n    <div class=\"label\">Puissance Active</div>\n    <div class=\"value\">{{(msg.payload.P||0)|number:2}}<small>kW</small></div>\n    <div class=\"sub\">P • Triphasée</div>\n  </div>\n  <div class=\"kpi-tile\">\n    <div class=\"label\">Puissance Réactive</div>\n    <div class=\"value\" style=\"color:#ff9800;\">{{(msg.payload.Q||0)|number:2}}<small>kvar</small></div>\n    <div class=\"sub\">Q • Inductive/Cap.</div>\n  </div>\n  <div class=\"kpi-tile\">\n    <div class=\"label\">Puissance Apparente</div>\n    <div class=\"value\" style=\"color:#9c27b0;\">{{(msg.payload.S||0)|number:2}}<small>kVA</small></div>\n    <div class=\"sub\">S = √(P² + Q²)</div>\n  </div>\n  <div class=\"kpi-tile {{ msg.payload.PF>0.9?'ok':(msg.payload.PF>0.85?'warn':'err') }}\">\n    <div class=\"label\">Facteur Puissance</div>\n    <div class=\"value\">{{(msg.payload.PF||0)|number:3}}</div>\n    <div class=\"sub\">cos φ moyen</div>\n  </div>\n  <div class=\"kpi-tile\">\n    <div class=\"label\">Énergie</div>\n    <div class=\"value\" style=\"color:#00e5ff;\">{{(msg.payload.E||0)|number:0}}<small>kWh</small></div>\n    <div class=\"sub\">Compteur cumulé</div>\n  </div>\n  <div class=\"kpi-tile {{ (msg.payload.Hz>49.5&&msg.payload.Hz<50.5)?'ok':'warn' }}\">\n    <div class=\"label\">Fréquence</div>\n    <div class=\"value\">{{(msg.payload.Hz||0)|number:2}}<small>Hz</small></div>\n    <div class=\"sub\">Réseau 50 Hz nominal</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1800,
+        "y": 2680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d9a77fa05e5da04",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_ov_synthese",
+        "name": "Synthèse Mesures",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:6px;\">\n  <table class=\"scada\">\n    <thead><tr><th>Grandeur</th><th>Phase A</th><th>Phase B</th><th>Phase C</th><th>Moyenne</th></tr></thead>\n    <tbody>\n      <tr><td>Tension L-N (V)</td><td class=\"mono\">{{msg.payload.Van|number:1}}</td><td class=\"mono\">{{msg.payload.Vbn|number:1}}</td><td class=\"mono\">{{msg.payload.Vcn|number:1}}</td><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.VavgLN|number:1}}</td></tr>\n      <tr><td>Tension L-L (V)</td><td class=\"mono\">{{msg.payload.Vab|number:1}}</td><td class=\"mono\">{{msg.payload.Vbc|number:1}}</td><td class=\"mono\">{{msg.payload.Vca|number:1}}</td><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Vavg|number:1}}</td></tr>\n      <tr><td>Courant (A)</td><td class=\"mono\">{{msg.payload.Ia|number:2}}</td><td class=\"mono\">{{msg.payload.Ib|number:2}}</td><td class=\"mono\">{{msg.payload.Ic|number:2}}</td><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Iavg|number:2}}</td></tr>\n      <tr><td>Puissance Active (kW)</td><td class=\"mono\">{{msg.payload.Pa|number:2}}</td><td class=\"mono\">{{msg.payload.Pb|number:2}}</td><td class=\"mono\">{{msg.payload.Pc|number:2}}</td><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.P|number:2}}</td></tr>\n      <tr><td>Courant Neutre (A)</td><td colspan=\"3\" class=\"mono\" style=\"text-align:center;\">—</td><td class=\"mono\" style=\"color:#ff9800;\">{{msg.payload.In|number:2}}</td></tr>\n    </tbody>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1790,
+        "y": 2780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "df2b25155d239a37",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_ov_status",
+        "name": "État Communication",
+        "order": 1,
+        "width": 12,
+        "height": 3,
+        "format": "<div style=\"padding:10px;display:flex;align-items:center;gap:18px;\">\n  <div class=\"led\" style=\"background:{{msg.payload.color}};color:{{msg.payload.color}};width:22px;height:22px;\"></div>\n  <div style=\"flex:1;\">\n    <div style=\"font-size:18px;font-weight:700;color:{{msg.payload.color}};letter-spacing:1.5px;\">{{msg.payload.text}}</div>\n    <div style=\"font-size:12px;color:#90a4ae;\">Dernière trame Modbus : <span class=\"mono\">{{msg.payload.lastUpdate}}</span></div>\n    <div style=\"font-size:11px;color:#607d8b;margin-top:2px;\">Modbus TCP • 200.200.200.247:502 • Slave 3</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1800,
+        "y": 2160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c60a74ef2cfb951",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_ov_status",
+        "name": "Score Santé",
+        "order": 2,
+        "width": 12,
+        "height": 5,
+        "format": "<div style=\"padding:8px;\">\n  <div style=\"display:flex;align-items:center;gap:14px;margin-bottom:10px;\">\n    <svg width=\"90\" height=\"90\" viewBox=\"0 0 100 100\">\n      <circle cx=\"50\" cy=\"50\" r=\"42\" stroke=\"rgba(255,255,255,.08)\" stroke-width=\"8\" fill=\"none\"/>\n      <circle cx=\"50\" cy=\"50\" r=\"42\" stroke=\"{{msg.payload.color}}\" stroke-width=\"8\" fill=\"none\" stroke-linecap=\"round\" stroke-dasharray=\"264\" stroke-dashoffset=\"{{264 - (264 * msg.payload.score / 100)}}\" transform=\"rotate(-90 50 50)\" style=\"transition:.6s;filter:drop-shadow(0 0 6px {{msg.payload.color}});\"/>\n      <text x=\"50\" y=\"56\" text-anchor=\"middle\" font-size=\"22\" font-weight=\"700\" fill=\"{{msg.payload.color}}\" font-family=\"Consolas\">{{msg.payload.score}}</text>\n    </svg>\n    <div>\n      <div style=\"color:#90a4ae;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;\">Indice Santé</div>\n      <div style=\"font-size:20px;font-weight:700;color:{{msg.payload.color}};letter-spacing:1.5px;\">{{msg.payload.label}}</div>\n      <div style=\"font-size:11px;color:#90a4ae;margin-top:4px;\">Erreurs : <span style=\"color:#f44336;font-weight:700;\">{{msg.payload.nbErr}}</span> • Avertissements : <span style=\"color:#ff9800;font-weight:700;\">{{msg.payload.nbWarn}}</span></div>\n    </div>\n  </div>\n  <div style=\"padding:8px 12px;background:rgba(0,188,212,.05);border-left:3px solid #00bcd4;border-radius:4px;font-size:12px;color:#cfd8dc;\">\n    <strong style=\"color:#00bcd4;\">Diagnostic :</strong> Score basé sur l'état de la communication, le nombre d'erreurs actives et d'avertissements en cours.\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1770,
+        "y": 2480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f141c2cf2206d991",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Tendance P",
+        "group": "grp_ov_chart",
+        "order": 1,
+        "width": 24,
+        "height": 6,
+        "label": "Puissance Active (kW)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "En attente de données...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#00bcd4",
+            "#ff9800",
+            "#9c27b0",
+            "#f44336",
+            "#4caf50",
+            "#00e5ff",
+            "#ffc107",
+            "#e91e63",
+            "#3f51b5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1670,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "47d1b1a46db7e22d",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Ia",
+        "group": "grp_i_jauges",
+        "order": 1,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Courant Phase A",
+        "label": "A",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": "15",
+        "colors": [
+            "#00e5ff",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 70,
+        "seg2": 90,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c041cdfc16312d40",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Ib",
+        "group": "grp_i_jauges",
+        "order": 2,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Courant Phase B",
+        "label": "A",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": "15",
+        "colors": [
+            "#00e5ff",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 70,
+        "seg2": 90,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "96aaed3c65e3d8e6",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Ic",
+        "group": "grp_i_jauges",
+        "order": 3,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Courant Phase C",
+        "label": "A",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": "15",
+        "colors": [
+            "#00e5ff",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 70,
+        "seg2": 90,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "0693c7a4682151b0",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "In",
+        "group": "grp_i_jauges",
+        "order": 4,
+        "width": 6,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Courant Neutre",
+        "label": "A",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 50,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 15,
+        "seg2": 30,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "ee86e41e89970d91",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Iavg",
+        "group": "grp_i_jauges",
+        "order": 5,
+        "width": 24,
+        "height": 1,
+        "gtype": "compass",
+        "title": "Courant Moyen",
+        "label": "A",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": "20",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "9cdbb662bd90315e",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_i_details",
+        "name": "Déséquilibre Courants",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:8px;\">\n  <div style=\"font-size:12px;color:#90a4ae;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:8px;\">Déséquilibre Triphasé</div>\n  <div style=\"display:flex;align-items:center;gap:20px;margin-bottom:14px;\">\n    <div style=\"font-size:44px;font-weight:700;font-family:Consolas,monospace;color:{{msg.payload.I_unb<5?'#4caf50':(msg.payload.I_unb<10?'#ff9800':'#f44336')}};\">{{msg.payload.I_unb|number:1}}<span style=\"font-size:18px;color:#90a4ae;\">%</span></div>\n    <div style=\"flex:1;\">\n      <div class=\"mini-bar\" style=\"height:14px;\"><div style=\"width:{{msg.payload.I_unb>30?100:msg.payload.I_unb*3.3}}%;background:linear-gradient(90deg,#4caf50,#ff9800,#f44336);\"></div></div>\n      <div style=\"display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#607d8b;\"><span>0%</span><span>5% (limite)</span><span>30%</span></div>\n    </div>\n  </div>\n  <div style=\"background:rgba(0,188,212,.06);border-left:3px solid #00bcd4;padding:10px 14px;border-radius:4px;font-size:12px;color:#cfd8dc;line-height:1.6;\">\n    <div><strong>I max :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">{{(msg.payload.Ia>msg.payload.Ib?(msg.payload.Ia>msg.payload.Ic?msg.payload.Ia:msg.payload.Ic):(msg.payload.Ib>msg.payload.Ic?msg.payload.Ib:msg.payload.Ic))|number:2}} A</span></div>\n    <div><strong>I moy :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Iavg|number:2}} A</span></div>\n    <div><strong>I neutre :</strong> <span class=\"mono\" style=\"color:{{msg.payload.In>20?'#f44336':'#4caf50'}};\">{{msg.payload.In|number:2}} A</span> <span style=\"font-size:10px;color:#90a4ae;\">(reflet du déséquilibre)</span></div>\n    <div style=\"margin-top:6px;font-size:11px;color:#90a4ae;\">Norme NEMA : déséquilibre > 5% → dérating moteur recommandé</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1800,
+        "y": 2820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cef0f4053dcb6d64",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_i_table",
+        "name": "Tableau Courants",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:6px;\">\n  <table class=\"scada\">\n    <thead><tr><th>Phase</th><th>Valeur</th><th>État</th><th>Charge</th></tr></thead>\n    <tbody>\n      <tr><td><strong style=\"color:#ff5722;\">● Phase A</strong></td><td class=\"mono\">{{msg.payload.Ia|number:2}} A</td><td><span class=\"badge {{msg.payload.Ia<70?'ok':(msg.payload.Ia<90?'warn':'err')}}\">{{msg.payload.Ia<70?'OK':(msg.payload.Ia<90?'CHARGE':'CRITIQUE')}}</span></td><td><div class=\"mini-bar\"><div style=\"width:{{msg.payload.Ia}}%;\"></div></div></td></tr>\n      <tr><td><strong style=\"color:#4caf50;\">● Phase B</strong></td><td class=\"mono\">{{msg.payload.Ib|number:2}} A</td><td><span class=\"badge {{msg.payload.Ib<70?'ok':(msg.payload.Ib<90?'warn':'err')}}\">{{msg.payload.Ib<70?'OK':(msg.payload.Ib<90?'CHARGE':'CRITIQUE')}}</span></td><td><div class=\"mini-bar\"><div style=\"width:{{msg.payload.Ib}}%;\"></div></div></td></tr>\n      <tr><td><strong style=\"color:#2196f3;\">● Phase C</strong></td><td class=\"mono\">{{msg.payload.Ic|number:2}} A</td><td><span class=\"badge {{msg.payload.Ic<70?'ok':(msg.payload.Ic<90?'warn':'err')}}\">{{msg.payload.Ic<70?'OK':(msg.payload.Ic<90?'CHARGE':'CRITIQUE')}}</span></td><td><div class=\"mini-bar\"><div style=\"width:{{msg.payload.Ic}}%;\"></div></div></td></tr>\n      <tr><td><strong style=\"color:#9c27b0;\">● Neutre</strong></td><td class=\"mono\">{{msg.payload.In|number:2}} A</td><td><span class=\"badge {{msg.payload.In<20?'ok':'warn'}}\">{{msg.payload.In<20?'OK':'DÉSÉQ.'}}</span></td><td><div class=\"mini-bar\"><div style=\"width:{{msg.payload.In*2}}%;background:linear-gradient(90deg,#ff9800,#f44336);\"></div></div></td></tr>\n      <tr style=\"background:rgba(0,188,212,.06);\"><td><strong style=\"color:#00bcd4;\">⌀ Moyen</strong></td><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Iavg|number:2}} A</td><td colspan=\"2\"><span style=\"font-size:11px;color:#90a4ae;\">Référence triphasée</span></td></tr>\n    </tbody>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1790,
+        "y": 2880,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "516ca34b7afbad73",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historique Courants",
+        "group": "grp_i_chart",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Courants Ia / Ib / Ic (A)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": "",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff5722",
+            "#4caf50",
+            "#2196f3",
+            "#9c27b0",
+            "#ffc107",
+            "#00e5ff",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f854e5abd1958c58",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vab",
+        "group": "grp_v_jauges_ll",
+        "order": 1,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Vab",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 480,
+        "colors": [
+            "#f44336",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": 380,
+        "seg2": 440,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "1907520827217026",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vbc",
+        "group": "grp_v_jauges_ll",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Vbc",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 480,
+        "colors": [
+            "#f44336",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": 380,
+        "seg2": 440,
+        "x": 1650,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "089269fac3e0a737",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vca",
+        "group": "grp_v_jauges_ll",
+        "order": 3,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Vca",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 480,
+        "colors": [
+            "#f44336",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": 380,
+        "seg2": 440,
+        "x": 1650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c16822e0710efac4",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vavg LL",
+        "group": "grp_v_jauges_ll",
+        "order": 4,
+        "width": 24,
+        "height": 1,
+        "gtype": "compass",
+        "title": "Tension L-L Moyenne",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 480,
+        "x": 1660,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d748616126112f84",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Van",
+        "group": "grp_v_jauges_ln",
+        "order": 1,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Van",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 280,
+        "colors": [
+            "#f44336",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": 220,
+        "seg2": 253,
+        "x": 1650,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "4e731dbe5a910719",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vbn",
+        "group": "grp_v_jauges_ln",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Vbn",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 280,
+        "colors": [
+            "#f44336",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": 220,
+        "seg2": 253,
+        "x": 1650,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9efa06f979bb989a",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vcn",
+        "group": "grp_v_jauges_ln",
+        "order": 3,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Vcn",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 280,
+        "colors": [
+            "#f44336",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": 220,
+        "seg2": 253,
+        "x": 1650,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fea29352430a417c",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Vavg LN",
+        "group": "grp_v_jauges_ln",
+        "order": 4,
+        "width": 24,
+        "height": 1,
+        "gtype": "compass",
+        "title": "Tension L-N Moyenne",
+        "label": "V",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 280,
+        "x": 1660,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2c9667dabd5ffa96",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_v_phasor",
+        "name": "Diagramme de Fresnel",
+        "order": 1,
+        "width": 12,
+        "height": 9,
+        "format": "<div style=\"padding:6px;text-align:center;\">\n  <svg viewBox=\"0 0 400 360\" style=\"width:100%;max-width:380px;\">\n    <defs>\n      <radialGradient id=\"bg\" cx=\"50%\" cy=\"50%\" r=\"60%\"><stop offset=\"0%\" stop-color=\"#152238\"/><stop offset=\"100%\" stop-color=\"#0a1929\"/></radialGradient>\n      <marker id=\"arrA\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#ff5722\"/></marker>\n      <marker id=\"arrB\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#4caf50\"/></marker>\n      <marker id=\"arrC\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"6\" markerHeight=\"6\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#2196f3\"/></marker>\n    </defs>\n    <circle cx=\"200\" cy=\"180\" r=\"160\" fill=\"url(#bg)\" stroke=\"rgba(0,188,212,.2)\" stroke-width=\"1\"/>\n    <circle cx=\"200\" cy=\"180\" r=\"120\" fill=\"none\" stroke=\"rgba(0,188,212,.1)\" stroke-dasharray=\"3,3\"/>\n    <circle cx=\"200\" cy=\"180\" r=\"80\" fill=\"none\" stroke=\"rgba(0,188,212,.08)\" stroke-dasharray=\"3,3\"/>\n    <line x1=\"40\" y1=\"180\" x2=\"360\" y2=\"180\" stroke=\"rgba(255,255,255,.1)\"/>\n    <line x1=\"200\" y1=\"20\" x2=\"200\" y2=\"340\" stroke=\"rgba(255,255,255,.1)\"/>\n    <line x1=\"200\" y1=\"180\" x2=\"{{200 + (msg.payload.Van/280*150)}}\" y2=\"180\" stroke=\"#ff5722\" stroke-width=\"3\" marker-end=\"url(#arrA)\" style=\"filter:drop-shadow(0 0 4px #ff5722);\"/>\n    <line x1=\"200\" y1=\"180\" x2=\"{{200 + (msg.payload.Vbn/280*150)*Math.cos(-2*Math.PI/3)}}\" y2=\"{{180 + (msg.payload.Vbn/280*150)*Math.sin(-2*Math.PI/3)}}\" stroke=\"#4caf50\" stroke-width=\"3\" marker-end=\"url(#arrB)\" style=\"filter:drop-shadow(0 0 4px #4caf50);\"/>\n    <line x1=\"200\" y1=\"180\" x2=\"{{200 + (msg.payload.Vcn/280*150)*Math.cos(2*Math.PI/3)}}\" y2=\"{{180 + (msg.payload.Vcn/280*150)*Math.sin(2*Math.PI/3)}}\" stroke=\"#2196f3\" stroke-width=\"3\" marker-end=\"url(#arrC)\" style=\"filter:drop-shadow(0 0 4px #2196f3);\"/>\n    <text x=\"360\" y=\"175\" fill=\"#ff5722\" font-size=\"14\" font-weight=\"700\">Va</text>\n    <text x=\"100\" y=\"320\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"700\">Vb</text>\n    <text x=\"100\" y=\"50\" fill=\"#2196f3\" font-size=\"14\" font-weight=\"700\">Vc</text>\n    <circle cx=\"200\" cy=\"180\" r=\"4\" fill=\"#00e5ff\"/>\n    <text x=\"200\" y=\"355\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"10\">Référence Va à 0° • Système direct</text>\n  </svg>\n  <div style=\"margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:11px;\">\n    <div><span style=\"color:#ff5722;\">●</span> Va : <span class=\"mono\">{{msg.payload.Van|number:1}} V ∠ 0°</span></div>\n    <div><span style=\"color:#4caf50;\">●</span> Vb : <span class=\"mono\">{{msg.payload.Vbn|number:1}} V ∠ -120°</span></div>\n    <div><span style=\"color:#2196f3;\">●</span> Vc : <span class=\"mono\">{{msg.payload.Vcn|number:1}} V ∠ +120°</span></div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1800,
+        "y": 2940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b7ab1198452e2f8a",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_v_details",
+        "name": "Analyse Tensions",
+        "order": 1,
+        "width": 12,
+        "height": 9,
+        "format": "<div style=\"padding:6px;\">\n  <div style=\"font-size:11px;color:#90a4ae;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:6px;\">Déséquilibre Tension</div>\n  <div style=\"display:flex;align-items:center;gap:14px;margin-bottom:14px;\">\n    <div style=\"font-size:36px;font-weight:700;font-family:Consolas;color:{{msg.payload.V_unb<2?'#4caf50':(msg.payload.V_unb<5?'#ff9800':'#f44336')}};\">{{msg.payload.V_unb|number:2}}<span style=\"font-size:14px;color:#90a4ae;\">%</span></div>\n    <div style=\"flex:1;\">\n      <div class=\"mini-bar\" style=\"height:12px;\"><div style=\"width:{{msg.payload.V_unb>20?100:msg.payload.V_unb*5}}%;background:linear-gradient(90deg,#4caf50,#ff9800,#f44336);\"></div></div>\n      <div style=\"display:flex;justify-content:space-between;margin-top:4px;font-size:10px;color:#607d8b;\"><span>0%</span><span>2% (IEEE)</span><span>20%</span></div>\n    </div>\n  </div>\n  <table class=\"scada\">\n    <thead><tr><th>Tension</th><th>Mesure</th><th>État</th></tr></thead>\n    <tbody>\n      <tr><td>Vab</td><td class=\"mono\">{{msg.payload.Vab|number:1}} V</td><td><span class=\"badge {{(msg.payload.Vab>360&&msg.payload.Vab<420)?'ok':'warn'}}\">{{(msg.payload.Vab>360&&msg.payload.Vab<420)?'OK':'HORS PLAGE'}}</span></td></tr>\n      <tr><td>Vbc</td><td class=\"mono\">{{msg.payload.Vbc|number:1}} V</td><td><span class=\"badge {{(msg.payload.Vbc>360&&msg.payload.Vbc<420)?'ok':'warn'}}\">{{(msg.payload.Vbc>360&&msg.payload.Vbc<420)?'OK':'HORS PLAGE'}}</span></td></tr>\n      <tr><td>Vca</td><td class=\"mono\">{{msg.payload.Vca|number:1}} V</td><td><span class=\"badge {{(msg.payload.Vca>360&&msg.payload.Vca<420)?'ok':'warn'}}\">{{(msg.payload.Vca>360&&msg.payload.Vca<420)?'OK':'HORS PLAGE'}}</span></td></tr>\n      <tr><td>Van</td><td class=\"mono\">{{msg.payload.Van|number:1}} V</td><td><span class=\"badge {{(msg.payload.Van>207&&msg.payload.Van<253)?'ok':'warn'}}\">{{(msg.payload.Van>207&&msg.payload.Van<253)?'OK':'HORS PLAGE'}}</span></td></tr>\n      <tr><td>Vbn</td><td class=\"mono\">{{msg.payload.Vbn|number:1}} V</td><td><span class=\"badge {{(msg.payload.Vbn>207&&msg.payload.Vbn<253)?'ok':'warn'}}\">{{(msg.payload.Vbn>207&&msg.payload.Vbn<253)?'OK':'HORS PLAGE'}}</span></td></tr>\n      <tr><td>Vcn</td><td class=\"mono\">{{msg.payload.Vcn|number:1}} V</td><td><span class=\"badge {{(msg.payload.Vcn>207&&msg.payload.Vcn<253)?'ok':'warn'}}\">{{(msg.payload.Vcn>207&&msg.payload.Vcn<253)?'OK':'HORS PLAGE'}}</span></td></tr>\n    </tbody>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1790,
+        "y": 3000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "59308fcf37a132da",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historique Tensions",
+        "group": "grp_v_chart",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Tensions Vab / Vbc / Vca (V)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": "",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff5722",
+            "#4caf50",
+            "#2196f3",
+            "#9c27b0",
+            "#ffc107",
+            "#00e5ff",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1690,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bffc08ef9d19429c",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "P",
+        "group": "grp_p_jauges",
+        "order": 1,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Puissance Active",
+        "label": "kW",
+        "format": "{{value|number:2}}",
+        "min": -25,
+        "max": 25,
+        "colors": [
+            "#ff9800",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": -20,
+        "seg2": 20,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "c7cea6aaf7681a38",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Q",
+        "group": "grp_p_jauges",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Puissance Réactive",
+        "label": "kvar",
+        "format": "{{value|number:2}}",
+        "min": -25,
+        "max": 25,
+        "colors": [
+            "#ff9800",
+            "#4caf50",
+            "#ff9800"
+        ],
+        "seg1": -15,
+        "seg2": 15,
+        "x": 1650,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "90537c1a1892c867",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "S",
+        "group": "grp_p_jauges",
+        "order": 3,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Puissance Apparente",
+        "label": "kVA",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 30,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 20,
+        "seg2": 27,
+        "x": 1650,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "55b9488deb4b7ca4",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "PF",
+        "group": "grp_p_energie",
+        "order": 2,
+        "width": 8,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Facteur de Puissance",
+        "label": "cos φ",
+        "format": "{{value|number:3}}",
+        "min": 0,
+        "max": 1,
+        "colors": [
+            "#f44336",
+            "#ff9800",
+            "#4caf50"
+        ],
+        "seg1": 0.85,
+        "seg2": 0.95,
+        "diff": false,
+        "className": "",
+        "x": 1650,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "cfad9341a5e40363",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_p_triangle",
+        "name": "Triangle Puissances",
+        "order": 1,
+        "width": 12,
+        "height": 9,
+        "format": "<div style=\"padding:6px;text-align:center;\">\n  <svg viewBox=\"0 0 400 280\" style=\"width:100%;max-width:380px;\">\n    <defs>\n      <marker id=\"arrP\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#4caf50\"/></marker>\n      <marker id=\"arrQ\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#ff9800\"/></marker>\n      <marker id=\"arrS\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M 0 0 L 10 5 L 0 10 Z\" fill=\"#9c27b0\"/></marker>\n    </defs>\n    <line x1=\"60\" y1=\"220\" x2=\"340\" y2=\"220\" stroke=\"#4caf50\" stroke-width=\"4\" marker-end=\"url(#arrP)\" style=\"filter:drop-shadow(0 0 5px #4caf50);\"/>\n    <line x1=\"340\" y1=\"220\" x2=\"340\" y2=\"{{220 - (msg.payload.S>0?(msg.payload.Q/msg.payload.S*180):0)}}\" stroke=\"#ff9800\" stroke-width=\"4\" marker-end=\"url(#arrQ)\" style=\"filter:drop-shadow(0 0 5px #ff9800);\"/>\n    <line x1=\"60\" y1=\"220\" x2=\"340\" y2=\"{{220 - (msg.payload.S>0?(msg.payload.Q/msg.payload.S*180):0)}}\" stroke=\"#9c27b0\" stroke-width=\"4\" marker-end=\"url(#arrS)\" style=\"filter:drop-shadow(0 0 5px #9c27b0);stroke-dasharray:6,3;\"/>\n    <path d=\"M 90 220 A 30 30 0 0 0 90 215\" fill=\"none\" stroke=\"#00e5ff\" stroke-width=\"2\"/>\n    <text x=\"200\" y=\"245\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"700\">P = {{msg.payload.P|number:2}} kW</text>\n    <text x=\"352\" y=\"{{220 - (msg.payload.S>0?(msg.payload.Q/msg.payload.S*90):0)}}\" fill=\"#ff9800\" font-size=\"13\" font-weight=\"700\">Q = {{msg.payload.Q|number:2}} kvar</text>\n    <text x=\"180\" y=\"{{220 - (msg.payload.S>0?(msg.payload.Q/msg.payload.S*100):0)}}\" fill=\"#9c27b0\" font-size=\"13\" font-weight=\"700\" transform=\"rotate(-{{(msg.payload.S>0?Math.atan2(msg.payload.Q,msg.payload.P)*180/Math.PI:0)|number:0}} 200 180)\">S = {{msg.payload.S|number:2}} kVA</text>\n    <text x=\"110\" y=\"215\" fill=\"#00e5ff\" font-size=\"12\" font-weight=\"700\">φ</text>\n    <text x=\"200\" y=\"30\" text-anchor=\"middle\" fill=\"#00bcd4\" font-size=\"15\" font-weight=\"700\" letter-spacing=\"2\">TRIANGLE DES PUISSANCES</text>\n    <text x=\"200\" y=\"50\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"11\">cos φ = {{msg.payload.PF|number:3}} • tan φ = {{(msg.payload.P>0?msg.payload.Q/msg.payload.P:0)|number:3}}</text>\n  </svg>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1800,
+        "y": 3060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a33be1c432865e07",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_p_phases",
+        "name": "Puissances par Phase",
+        "order": 1,
+        "width": 12,
+        "height": 9,
+        "format": "<div style=\"padding:8px;\">\n  <div style=\"font-size:12px;color:#90a4ae;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:14px;\">Répartition par Phase</div>\n  <div style=\"display:flex;flex-direction:column;gap:14px;\">\n    <div>\n      <div style=\"display:flex;justify-content:space-between;margin-bottom:4px;\"><span style=\"color:#ff5722;font-weight:700;\">● Phase A</span><span class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Pa|number:2}} kW</span></div>\n      <div class=\"mini-bar\" style=\"height:18px;\"><div style=\"width:{{Math.abs(msg.payload.Pa)/10*100>100?100:Math.abs(msg.payload.Pa)/10*100}}%;background:linear-gradient(90deg,#ff5722,#ff8a65);\"></div></div>\n    </div>\n    <div>\n      <div style=\"display:flex;justify-content:space-between;margin-bottom:4px;\"><span style=\"color:#4caf50;font-weight:700;\">● Phase B</span><span class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Pb|number:2}} kW</span></div>\n      <div class=\"mini-bar\" style=\"height:18px;\"><div style=\"width:{{Math.abs(msg.payload.Pb)/10*100>100?100:Math.abs(msg.payload.Pb)/10*100}}%;background:linear-gradient(90deg,#4caf50,#81c784);\"></div></div>\n    </div>\n    <div>\n      <div style=\"display:flex;justify-content:space-between;margin-bottom:4px;\"><span style=\"color:#2196f3;font-weight:700;\">● Phase C</span><span class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Pc|number:2}} kW</span></div>\n      <div class=\"mini-bar\" style=\"height:18px;\"><div style=\"width:{{Math.abs(msg.payload.Pc)/10*100>100?100:Math.abs(msg.payload.Pc)/10*100}}%;background:linear-gradient(90deg,#2196f3,#64b5f6);\"></div></div>\n    </div>\n    <div style=\"border-top:1px solid rgba(0,188,212,.2);padding-top:10px;margin-top:6px;\">\n      <div style=\"display:flex;justify-content:space-between;\"><span style=\"color:#00bcd4;font-weight:700;letter-spacing:1.3px;\">⌀ TOTAL</span><span class=\"mono\" style=\"color:#00e5ff;font-size:18px;font-weight:700;\">{{msg.payload.P|number:2}} kW</span></div>\n    </div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1800,
+        "y": 3120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea22e92f65dccd8b",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_p_energie",
+        "name": "Énergie & PF",
+        "order": 1,
+        "width": 16,
+        "height": 5,
+        "format": "<div style=\"padding:8px;display:grid;grid-template-columns:1fr 1fr;gap:14px;\">\n  <div class=\"kpi-tile\" style=\"text-align:center;\">\n    <div class=\"label\">Énergie cumulée</div>\n    <div class=\"value\" style=\"font-size:38px;color:#00e5ff;\">{{msg.payload.E|number:0}}<small>kWh</small></div>\n    <div class=\"sub\">Compteur depuis mise en service</div>\n  </div>\n  <div class=\"kpi-tile\" style=\"text-align:center;\">\n    <div class=\"label\">Puissance instantanée</div>\n    <div class=\"value\">{{msg.payload.P|number:2}}<small>kW</small></div>\n    <div class=\"sub\">Triphasé total</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1770,
+        "y": 3180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "437c0fd12ae3de60",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Énergie cumulée",
+        "group": "grp_p_chart",
+        "order": 2,
+        "width": 24,
+        "height": 5,
+        "label": "Énergie cumulée (kWh)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": "",
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#00e5ff",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1690,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6d3b821dec8c3a2",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historique P/Q/S",
+        "group": "grp_p_chart",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Puissances P / Q / S",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": "",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#9c27b0",
+            "#00e5ff",
+            "#f44336",
+            "#2196f3",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1690,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0dabfd4cf5b98e37",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Fréquence",
+        "group": "cd8b54a7966d252c",
+        "order": 20,
+        "width": 24,
+        "height": 4,
+        "gtype": "wave",
+        "title": "Fréquence Réseau",
+        "label": "Hz",
+        "format": "{{value|number:2}}",
+        "min": 45,
+        "max": 55,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1670,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "35bf6b6176e0f1ed",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "e2e1cc41c095769e",
+        "name": "Indice Qualité",
+        "order": 3,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"font-size:12px;color:#90a4ae;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:10px;\">Conformité Norme EN 50160</div>\n  <table class=\"scada\">\n    <thead><tr><th>Critère</th><th>Mesure</th><th>Limite</th><th>État</th></tr></thead>\n    <tbody>\n      <tr><td>Fréquence</td><td class=\"mono\">{{msg.payload.Hz|number:2}} Hz</td><td>50 ± 1%</td><td><span class=\"badge {{(msg.payload.Hz>49.5&&msg.payload.Hz<50.5)?'ok':'warn'}}\">{{(msg.payload.Hz>49.5&&msg.payload.Hz<50.5)?'OK':'HORS'}}</span></td></tr>\n      <tr><td>Tension moy.</td><td class=\"mono\">{{msg.payload.VavgLN|number:1}} V</td><td>230 ± 10%</td><td><span class=\"badge {{(msg.payload.VavgLN>207&&msg.payload.VavgLN<253)?'ok':'warn'}}\">{{(msg.payload.VavgLN>207&&msg.payload.VavgLN<253)?'OK':'HORS'}}</span></td></tr>\n      <tr><td>THD Tension</td><td class=\"mono\">{{msg.payload.THD_V|number:2}} %</td><td>< 8%</td><td><span class=\"badge {{msg.payload.THD_V<8?'ok':'err'}}\">{{msg.payload.THD_V<8?'OK':'HORS'}}</span></td></tr>\n      <tr><td>THD Courant</td><td class=\"mono\">{{msg.payload.THD_I|number:2}} %</td><td>< 15%</td><td><span class=\"badge {{msg.payload.THD_I<15?'ok':'warn'}}\">{{msg.payload.THD_I<15?'OK':'HORS'}}</span></td></tr>\n      <tr><td>Déséq. Tension</td><td class=\"mono\">{{msg.payload.V_unb|number:2}} %</td><td>< 2%</td><td><span class=\"badge {{msg.payload.V_unb<2?'ok':'warn'}}\">{{msg.payload.V_unb<2?'OK':'HORS'}}</span></td></tr>\n      <tr><td>Déséq. Courant</td><td class=\"mono\">{{msg.payload.I_unb|number:2}} %</td><td>< 10%</td><td><span class=\"badge {{msg.payload.I_unb<10?'ok':'warn'}}\">{{msg.payload.I_unb<10?'OK':'HORS'}}</span></td></tr>\n      <tr><td>Facteur Puissance</td><td class=\"mono\">{{msg.payload.PF|number:3}}</td><td>> 0.90</td><td><span class=\"badge {{msg.payload.PF>0.9?'ok':'warn'}}\">{{msg.payload.PF>0.9?'OK':'BAS'}}</span></td></tr>\n    </tbody>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1780,
+        "y": 3240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c55a8ae785068063",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "ac4e4e1b0cd684b9",
+        "name": "Déséquilibres",
+        "order": 3,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"display:grid;grid-template-columns:1fr 1fr;gap:14px;\">\n    <div class=\"kpi-tile\" style=\"text-align:center;\">\n      <div class=\"label\">Déséquilibre Tension</div>\n      <div class=\"value\" style=\"color:{{msg.payload.V_unb<2?'#4caf50':(msg.payload.V_unb<5?'#ff9800':'#f44336')}};\">{{msg.payload.V_unb|number:2}}<small>%</small></div>\n      <div class=\"mini-bar\" style=\"margin-top:8px;height:8px;\"><div style=\"width:{{msg.payload.V_unb>10?100:msg.payload.V_unb*10}}%;background:linear-gradient(90deg,#4caf50,#ff9800,#f44336);\"></div></div>\n      <div class=\"sub\" style=\"margin-top:6px;\">Limite IEEE : 2%</div>\n    </div>\n    <div class=\"kpi-tile\" style=\"text-align:center;\">\n      <div class=\"label\">Déséquilibre Courant</div>\n      <div class=\"value\" style=\"color:{{msg.payload.I_unb<5?'#4caf50':(msg.payload.I_unb<15?'#ff9800':'#f44336')}};\">{{msg.payload.I_unb|number:2}}<small>%</small></div>\n      <div class=\"mini-bar\" style=\"margin-top:8px;height:8px;\"><div style=\"width:{{msg.payload.I_unb>30?100:msg.payload.I_unb*3.3}}%;background:linear-gradient(90deg,#4caf50,#ff9800,#f44336);\"></div></div>\n      <div class=\"sub\" style=\"margin-top:6px;\">Limite NEMA : 5%</div>\n    </div>\n  </div>\n  <div style=\"margin-top:14px;padding:10px 14px;background:rgba(0,188,212,.06);border-left:3px solid #00bcd4;border-radius:4px;font-size:12px;color:#cfd8dc;line-height:1.7;\">\n    <strong style=\"color:#00bcd4;\">ℹ️ Interprétation :</strong><br>\n    Le déséquilibre est l'écart entre la valeur max et la moyenne, divisé par la moyenne. Un déséquilibre de tension de 2% peut provoquer un déséquilibre de courant moteur de 15% à 20%, entraînant un échauffement excessif.\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1780,
+        "y": 3300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "478a85ef25aed816",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Tensions long-terme",
+        "group": "grp_h_chart1",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Tensions L-N (1 heure)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "removeOlder": "60",
+        "removeOlderUnit": "60",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff5722",
+            "#4caf50",
+            "#2196f3"
+        ],
+        "outputs": 1,
+        "x": 1240,
+        "y": 4480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55fbfe274ae702c3",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Courants long-terme",
+        "group": "grp_h_chart2",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Courants (1 heure)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "removeOlder": "60",
+        "removeOlderUnit": "60",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ff5722",
+            "#4caf50",
+            "#2196f3",
+            "#9c27b0"
+        ],
+        "outputs": 1,
+        "x": 1200,
+        "y": 4560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04d28340064fb793",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Puissances long-terme",
+        "group": "grp_h_chart3",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Puissances (1 heure)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "removeOlder": "60",
+        "removeOlderUnit": "60",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#9c27b0"
+        ],
+        "outputs": 1,
+        "x": 1200,
+        "y": 4620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "eafb04c2dc9a378b",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Fréquence",
+        "group": "grp_h_chart4",
+        "order": 1,
+        "width": 12,
+        "height": 6,
+        "label": "Fréquence (Hz)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "removeOlder": "60",
+        "removeOlderUnit": "60",
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#00e5ff"
+        ],
+        "outputs": 1,
+        "x": 1670,
+        "y": 1180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "70530be1828e119f",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Énergie",
+        "group": "grp_h_chart4",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "label": "Énergie (kWh)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "removeOlder": "60",
+        "removeOlderUnit": "60",
+        "useOneColor": true,
+        "useUTC": false,
+        "colors": [
+            "#ffc107"
+        ],
+        "outputs": 1,
+        "x": 1660,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "087c73ee726a5e77",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_d_comm",
+        "name": "Diag Comm",
+        "order": 1,
+        "width": 12,
+        "height": 7,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"display:flex;align-items:center;gap:14px;margin-bottom:14px;\">\n    <div class=\"led\" style=\"background:{{msg.payload.color}};color:{{msg.payload.color}};width:24px;height:24px;\"></div>\n    <div>\n      <div style=\"font-size:18px;font-weight:700;color:{{msg.payload.color}};letter-spacing:1.5px;\">{{msg.payload.text}}</div>\n      <div style=\"font-size:11px;color:#90a4ae;\">Latence : <span class=\"mono\">{{msg.payload.age}} ms</span></div>\n    </div>\n  </div>\n  <table class=\"scada\">\n    <tr><th>Protocole</th><td class=\"mono\">Modbus TCP</td></tr>\n    <tr><th>Adresse IP</th><td class=\"mono\">200.200.200.247</td></tr>\n    <tr><th>Port</th><td class=\"mono\">502</td></tr>\n    <tr><th>Slave ID</th><td class=\"mono\">3</td></tr>\n    <tr><th>Période</th><td class=\"mono\">2000 ms</td></tr>\n    <tr><th>Timeout</th><td class=\"mono\">3000 ms</td></tr>\n    <tr><th>Reconnect</th><td class=\"mono\">2000 ms</td></tr>\n    <tr><th>Dernière trame</th><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.lastUpdate}}</td></tr>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 1770,
+        "y": 2220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e6200ca0cb46a6ef",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_d_device",
+        "name": "Identification",
+        "order": 1,
+        "width": 12,
+        "height": 7,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"display:flex;align-items:center;gap:14px;margin-bottom:14px;\">\n    <div style=\"font-size:42px;\">🏭</div>\n    <div>\n      <div style=\"font-size:18px;font-weight:700;color:#00e5ff;\">PM2230</div>\n      <div style=\"font-size:11px;color:#90a4ae;\">Schneider Electric • PowerLogic</div>\n    </div>\n  </div>\n  <table class=\"scada\">\n    <tr><th>Modèle</th><td>PM2230</td></tr>\n    <tr><th>Fabricant</th><td>Schneider Electric</td></tr>\n    <tr><th>Série</th><td>PowerLogic PM2000</td></tr>\n    <tr><th>Type</th><td>Centrale de Mesure Triphasée</td></tr>\n    <tr><th>Mesures</th><td>U, I, P, Q, S, PF, F, E, THD</td></tr>\n    <tr><th>Précision</th><td>Classe 0.5 (IEC 61557-12)</td></tr>\n    <tr><th>Passerelle</th><td>Ebyte NA111 (Modbus RS-485 ↔ TCP)</td></tr>\n    <tr><th>Liaison</th><td>RS-485 @ 9600 bauds, 8N1</td></tr>\n  </table>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 410,
+        "y": 3920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1dbbb0623ab32cc1",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_d_health",
+        "name": "Registres Modbus",
+        "order": 1,
+        "width": 24,
+        "height": 8,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"font-size:13px;color:#00bcd4;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:8px;\">Cartographie des Lectures Modbus</div>\n  <table class=\"scada\">\n    <thead><tr><th>Grandeur</th><th>Registre</th><th>Quantité</th><th>Type</th><th>Période</th><th>État</th></tr></thead>\n    <tbody>\n      <tr><td>Tensions L-L / L-N</td><td class=\"mono\">3019</td><td class=\"mono\">18 reg.</td><td>Float32 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n      <tr><td>Courants Ia/Ib/Ic/In</td><td class=\"mono\">2999</td><td class=\"mono\">12 reg.</td><td>Float32 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n      <tr><td>Puissances P/Q/S/PF</td><td class=\"mono\">3059</td><td class=\"mono\">26 reg.</td><td>Float32 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n      <tr><td>Fréquence</td><td class=\"mono\">3109</td><td class=\"mono\">2 reg.</td><td>Float32 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n      <tr><td>Énergie Active</td><td class=\"mono\">3203</td><td class=\"mono\">4 reg.</td><td>Int64 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n      <tr><td>THD V & I</td><td class=\"mono\">21200</td><td class=\"mono\">40 reg.</td><td>Float32 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n      <tr><td>P par phase (a/b/c)</td><td class=\"mono\">3065</td><td class=\"mono\">24 reg.</td><td>Float32 BE</td><td>2 s</td><td><span class=\"badge ok\">ACTIF</span></td></tr>\n    </tbody>\n  </table>\n  <div style=\"margin-top:10px;padding:8px 12px;background:rgba(0,188,212,.05);border-left:3px solid #00bcd4;border-radius:4px;font-size:11px;color:#90a4ae;\">\n    📡 Total : <strong style=\"color:#00e5ff;\">126 registres</strong> lus toutes les 2 secondes • <strong style=\"color:#00e5ff;\">≈ 252 mots/s</strong> sur le bus Modbus\n  </div>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 410,
+        "y": 3980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "061f5ec18173db4f",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_d_logs",
+        "name": "Journal Système",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"font-size:13px;color:#00bcd4;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:8px;\">Événements Système</div>\n  <div style=\"background:#0a1929;border-radius:6px;padding:10px;font-family:'Consolas',monospace;font-size:12px;line-height:1.7;color:#90a4ae;max-height:200px;overflow:auto;\">\n    <div><span style=\"color:#4caf50;\">[SYSTEM]</span> Démarrage du superviseur Node-RED</div>\n    <div><span style=\"color:#00bcd4;\">[MODBUS]</span> Connexion établie à 200.200.200.247:502</div>\n    <div><span style=\"color:#00bcd4;\">[MODBUS]</span> Slave 3 accessible — Polling actif (T=2s)</div>\n    <div><span style=\"color:#4caf50;\">[DECODE]</span> Décodage Float32 Big-Endian opérationnel</div>\n    <div><span style=\"color:#00bcd4;\">[WATCHDOG]</span> Surveillance communication active (T=1s)</div>\n    <div><span style=\"color:#4caf50;\">[ALARM]</span> Système de détection d'alarmes opérationnel</div>\n    <div><span style=\"color:#4caf50;\">[MOTEUR]</span> Module de calcul moteur asynchrone activé</div>\n    <div><span style=\"color:#00e5ff;\">[INFO]</span> Dashboard prêt — Toutes les mesures disponibles</div>\n  </div>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 410,
+        "y": 4040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04b88f6ab7a62b07",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Ns",
+        "group": "grp_m_jauges",
+        "order": 1,
+        "width": 8,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Vitesse Synchrone",
+        "label": "tr/min",
+        "format": "{{value|number:0}}",
+        "min": 0,
+        "max": 3000,
+        "colors": [
+            "#4caf50",
+            "#4caf50",
+            "#4caf50"
+        ],
+        "seg1": 1000,
+        "seg2": 2000,
+        "x": 2250,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "1641ff5bcc3ae7d5",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Nr",
+        "group": "grp_m_jauges",
+        "order": 2,
+        "width": 8,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Vitesse Rotor",
+        "label": "tr/min",
+        "format": "{{value|number:0}}",
+        "min": 0,
+        "max": 3000,
+        "colors": [
+            "#00bcd4",
+            "#00bcd4",
+            "#00bcd4"
+        ],
+        "seg1": 1000,
+        "seg2": 2000,
+        "x": 2250,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "eb06a85c39e11feb",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Couple",
+        "group": "grp_m_jauges",
+        "order": 3,
+        "width": 8,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Couple Moteur",
+        "label": "Nm",
+        "format": "{{value|number:1}}",
+        "min": 0,
+        "max": 300,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 200,
+        "seg2": 280,
+        "diff": false,
+        "className": "",
+        "x": 2260,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "5249916f6c7a2502",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_m_etat",
+        "name": "État Moteur",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"display:flex;align-items:center;gap:14px;margin-bottom:14px;\">\n    <div style=\"font-size:46px;animation:spin 4s linear infinite;\">🌀</div>\n    <div>\n      <div style=\"color:#90a4ae;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;\">État de Fonctionnement</div>\n      <div style=\"font-size:22px;font-weight:700;color:{{msg.payload.color}};letter-spacing:1.5px;\">{{msg.payload.etat}}</div>\n    </div>\n  </div>\n  <table class=\"scada\">\n    <tr><th>Vitesse synchrone Ns</th><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Ns|number:0}} tr/min</td></tr>\n    <tr><th>Vitesse rotor Nr</th><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Nr|number:0}} tr/min</td></tr>\n    <tr><th>Glissement g</th><td class=\"mono\">{{msg.payload.slip|number:2}} %</td></tr>\n    <tr><th>Couple C</th><td class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.couple|number:1}} Nm</td></tr>\n    <tr><th>Puissance mécanique</th><td class=\"mono\" style=\"color:#4caf50;\">{{msg.payload.Pmech|number:2}} kW</td></tr>\n    <tr><th>Taux de charge</th><td><div class=\"mini-bar\" style=\"height:14px;\"><div style=\"width:{{msg.payload.load>100?100:msg.payload.load}}%;background:linear-gradient(90deg,#4caf50,#ff9800,#f44336);\"></div></div><div class=\"mono\" style=\"text-align:center;font-size:11px;color:#00e5ff;margin-top:4px;\">{{msg.payload.load|number:1}} %</div></td></tr>\n  </table>\n</div>\n<style>@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 2270,
+        "y": 1100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "222b7d026a1bae8e",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_m_courbe_tn",
+        "name": "Courbe T(N)",
+        "order": 1,
+        "width": 12,
+        "height": 8,
+        "format": "<div style=\"padding:8px;text-align:center;\">\n  <svg viewBox=\"0 0 400 280\" style=\"width:100%;max-width:380px;\">\n    <defs>\n      <linearGradient id=\"tnGrad\" x1=\"0%\" y1=\"100%\" x2=\"0%\" y2=\"0%\"><stop offset=\"0%\" stop-color=\"#00bcd4\" stop-opacity=\"0.4\"/><stop offset=\"100%\" stop-color=\"#00bcd4\" stop-opacity=\"0\"/></linearGradient>\n    </defs>\n    <line x1=\"50\" y1=\"230\" x2=\"370\" y2=\"230\" stroke=\"rgba(255,255,255,.2)\"/>\n    <line x1=\"50\" y1=\"230\" x2=\"50\" y2=\"30\" stroke=\"rgba(255,255,255,.2)\"/>\n    <text x=\"380\" y=\"235\" fill=\"#90a4ae\" font-size=\"11\">N</text>\n    <text x=\"40\" y=\"25\" fill=\"#90a4ae\" font-size=\"11\">T</text>\n    <text x=\"200\" y=\"255\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"11\">Vitesse (tr/min)</text>\n    <text x=\"15\" y=\"130\" fill=\"#90a4ae\" font-size=\"11\" transform=\"rotate(-90 15 130)\">Couple (Nm)</text>\n    <path d=\"M 50 220 Q 100 100 200 80 Q 280 75 320 120 Q 340 180 350 230 Z\" fill=\"url(#tnGrad)\" stroke=\"#00bcd4\" stroke-width=\"2\"/>\n    <line x1=\"320\" y1=\"30\" x2=\"320\" y2=\"230\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/>\n    <text x=\"325\" y=\"45\" fill=\"#4caf50\" font-size=\"11\" font-weight=\"700\">Ns</text>\n    <line x1=\"{{50 + (msg.payload.Nr/3000)*270}}\" y1=\"30\" x2=\"{{50 + (msg.payload.Nr/3000)*270}}\" y2=\"230\" stroke=\"#ff9800\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.5\"/>\n    <circle cx=\"{{50 + (msg.payload.Nr/3000)*270}}\" cy=\"{{230 - (msg.payload.couple/300)*200}}\" r=\"8\" fill=\"#ff5722\" style=\"filter:drop-shadow(0 0 8px #ff5722);\"/>\n    <circle cx=\"{{50 + (msg.payload.Nr/3000)*270}}\" cy=\"{{230 - (msg.payload.couple/300)*200}}\" r=\"14\" fill=\"none\" stroke=\"#ff5722\" stroke-width=\"1\" opacity=\"0.5\"><animate attributeName=\"r\" from=\"8\" to=\"22\" dur=\"1.5s\" repeatCount=\"indefinite\"/><animate attributeName=\"opacity\" from=\"0.6\" to=\"0\" dur=\"1.5s\" repeatCount=\"indefinite\"/></circle>\n    <text x=\"200\" y=\"15\" text-anchor=\"middle\" fill=\"#00bcd4\" font-size=\"13\" font-weight=\"700\" letter-spacing=\"1.5\">CARACTÉRISTIQUE COUPLE-VITESSE</text>\n  </svg>\n  <div style=\"margin-top:6px;font-size:11px;color:#90a4ae;\">Point de fonctionnement : <span style=\"color:#ff5722;font-weight:700;\">●</span> <span class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.Nr|number:0}} tr/min</span> @ <span class=\"mono\" style=\"color:#00e5ff;\">{{msg.payload.couple|number:1}} Nm</span></div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 2270,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a745defaa177c4bc",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Évolution Moteur",
+        "group": "grp_m_chart",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "label": "Vitesse Nr (tr/min)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "removeOlder": "10",
+        "removeOlderUnit": "60",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#00bcd4",
+            "#ff5722",
+            "#4caf50"
+        ],
+        "outputs": 1,
+        "x": 2290,
+        "y": 1220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8f0434e78c1a7da3",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_a_synthese",
+        "name": "Synthèse Alarmes",
+        "order": 1,
+        "width": 24,
+        "height": 4,
+        "format": "<div style=\"display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:6px;\">\n  <div class=\"kpi-tile\" style=\"text-align:center;\">\n    <div class=\"label\">Alarmes Critiques</div>\n    <div class=\"value\" style=\"color:#f44336;\">{{msg.payload.nbErr}}</div>\n    <div class=\"sub\">Niveau erreur</div>\n  </div>\n  <div class=\"kpi-tile\" style=\"text-align:center;\">\n    <div class=\"label\">Avertissements</div>\n    <div class=\"value\" style=\"color:#ff9800;\">{{msg.payload.nbWarn}}</div>\n    <div class=\"sub\">Niveau warning</div>\n  </div>\n  <div class=\"kpi-tile\" style=\"text-align:center;\">\n    <div class=\"label\">Total Actives</div>\n    <div class=\"value\" style=\"color:#00bcd4;\">{{msg.payload.nbTotal}}</div>\n    <div class=\"sub\">Alarmes en cours</div>\n  </div>\n  <div class=\"kpi-tile\" style=\"text-align:center;\">\n    <div class=\"label\">État Général</div>\n    <div class=\"value\" style=\"font-size:22px;color:{{msg.payload.nbErr>0?'#f44336':(msg.payload.nbWarn>0?'#ff9800':'#4caf50')}};\">{{msg.payload.nbErr>0?'CRITIQUE':(msg.payload.nbWarn>0?'ATTENTION':'NORMAL')}}</div>\n    <div class=\"sub\">Synthèse alarmes</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1790,
+        "y": 2280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3eea80ee2fe6e993",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_a_journal",
+        "name": "Alarmes Actives",
+        "order": 1,
+        "width": 24,
+        "height": 8,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"font-size:13px;color:#00bcd4;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:8px;\">Alarmes en Cours</div>\n  <div ng-if=\"msg.payload.active.length===0\" style=\"padding:20px;text-align:center;color:#4caf50;font-size:14px;\">\n    ✓ Aucune alarme active — Système nominal\n  </div>\n  <table class=\"scada\" ng-if=\"msg.payload.active.length>0\">\n    <thead><tr><th>Niveau</th><th>Code</th><th>Description</th><th>Valeur</th><th>Heure</th></tr></thead>\n    <tbody>\n      <tr ng-repeat=\"a in msg.payload.active\">\n        <td><span class=\"badge {{a.level==='err'?'err':'warn'}}\">{{a.level==='err'?'ERREUR':'WARNING'}}</span></td>\n        <td class=\"mono\" style=\"font-weight:700;\">{{a.code}}</td>\n        <td>{{a.msg}}</td>\n        <td class=\"mono\" style=\"color:#00e5ff;\">{{a.val}}</td>\n        <td class=\"mono\" style=\"color:#90a4ae;\">{{a.ts}}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1780,
+        "y": 2320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "185ccf3b4828de6b",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_a_historique",
+        "name": "Historique Alarmes",
+        "order": 1,
+        "width": 24,
+        "height": 9,
+        "format": "<div style=\"padding:10px;\">\n  <div style=\"font-size:13px;color:#00bcd4;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:8px;\">Historique des Événements (50 derniers)</div>\n  <div ng-if=\"msg.payload.length===0\" style=\"padding:20px;text-align:center;color:#90a4ae;font-size:13px;\">Aucun événement enregistré</div>\n  <table class=\"scada\" ng-if=\"msg.payload.length>0\" style=\"max-height:400px;\">\n    <thead><tr><th>Niveau</th><th>Code</th><th>Description</th><th>Valeur</th><th>Heure</th></tr></thead>\n    <tbody>\n      <tr ng-repeat=\"a in msg.payload\">\n        <td><span class=\"badge {{a.level==='err'?'err':'warn'}}\">{{a.level==='err'?'ERR':'WRN'}}</span></td>\n        <td class=\"mono\" style=\"font-weight:700;\">{{a.code}}</td>\n        <td>{{a.msg}}</td>\n        <td class=\"mono\" style=\"color:#00e5ff;\">{{a.val}}</td>\n        <td class=\"mono\" style=\"color:#90a4ae;\">{{a.ts}}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1790,
+        "y": 2380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c6bf3988a6dd74c8",
+        "type": "ui_form",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Paramètres Moteur",
+        "label": "Configuration Moteur Asynchrone",
+        "group": "grp_param_moteur",
+        "order": 1,
+        "width": 12,
+        "height": 10,
+        "options": [
+            {
+                "label": "Nombre de pôles (2/4/6/8)",
+                "value": "motor_poles",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Rendement nominal (%)",
+                "value": "motor_eff",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Puissance nominale (kW)",
+                "value": "motor_Pn",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "motor_poles": "4",
+            "motor_eff": "92",
+            "motor_Pn": "15"
+        },
+        "payload": "",
+        "submit": "Enregistrer",
+        "cancel": "Annuler",
+        "topic": "topic",
+        "splitLayout": "",
+        "className": "",
+        "x": 410,
+        "y": 4100,
+        "wires": [
+            [
+                "361295eba2904b4f"
+            ]
+        ]
+    },
+    {
+        "id": "361295eba2904b4f",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Sauvegarde Moteur",
+        "func": "if(msg.payload.motor_poles)flow.set('motor_poles',Number(msg.payload.motor_poles));\nif(msg.payload.motor_eff)flow.set('motor_eff',Number(msg.payload.motor_eff)/100);\nif(msg.payload.motor_Pn)flow.set('motor_Pn',Number(msg.payload.motor_Pn));\nnode.status({fill:'green',shape:'dot',text:'Paramètres moteur enregistrés'});\nreturn {payload:'Paramètres moteur enregistrés'};",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 4100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d637e22ee4c52fd",
+        "type": "ui_form",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Paramètres Seuils",
+        "label": "Seuils d'Alarme",
+        "group": "grp_param_seuils",
+        "order": 1,
+        "width": 12,
+        "height": 10,
+        "options": [
+            {
+                "label": "Tension max L-N (V)",
+                "value": "seuil_V_max",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Tension min L-N (V)",
+                "value": "seuil_V_min",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Courant max (A)",
+                "value": "seuil_I_max",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "PF min",
+                "value": "seuil_PF_min",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "THD max (%)",
+                "value": "seuil_THD",
+                "type": "number",
+                "required": true,
+                "rows": null
+            },
+            {
+                "label": "Déséquilibre max (%)",
+                "value": "seuil_unb",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "seuil_V_max": "253",
+            "seuil_V_min": "207",
+            "seuil_I_max": "80",
+            "seuil_PF_min": "0.85",
+            "seuil_THD": "8",
+            "seuil_unb": "5"
+        },
+        "payload": "",
+        "submit": "Enregistrer",
+        "cancel": "Annuler",
+        "topic": "topic",
+        "x": 410,
+        "y": 4160,
+        "wires": [
+            [
+                "3bc3bf6713f4ef15"
+            ]
+        ]
+    },
+    {
+        "id": "3bc3bf6713f4ef15",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Sauvegarde Seuils",
+        "func": "['seuil_V_max','seuil_V_min','seuil_I_max','seuil_PF_min','seuil_THD','seuil_unb'].forEach(k=>{if(msg.payload[k]!==undefined)flow.set(k,Number(msg.payload[k]));});\nnode.status({fill:'green',shape:'dot',text:'Seuils enregistrés'});\nreturn {payload:'Seuils enregistrés'};",
+        "outputs": 1,
+        "x": 640,
+        "y": 4160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e2d0b97322eb755a",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_param_info",
+        "name": "Informations Configuration",
+        "order": 1,
+        "width": 24,
+        "height": 7,
+        "format": "<div style=\"padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px;\">\n  <div style=\"padding:12px;background:rgba(0,188,212,.05);border-left:3px solid #00bcd4;border-radius:6px;\">\n    <div style=\"font-size:13px;color:#00bcd4;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:8px;\">📐 Calculs Moteur Asynchrone</div>\n    <div style=\"font-size:12px;color:#cfd8dc;line-height:1.8;\">\n      <div><strong>Vitesse synchrone :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">Ns = 120·f / p</span></div>\n      <div><strong>Glissement :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">g = (Ns − Nr) / Ns</span></div>\n      <div><strong>Puissance mécanique :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">Pm = P · η</span></div>\n      <div><strong>Couple :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">C = Pm / ωr = (60·Pm) / (2π·Nr)</span></div>\n      <div><strong>Charge :</strong> <span class=\"mono\" style=\"color:#00e5ff;\">load = P / Pn × 100</span></div>\n    </div>\n  </div>\n  <div style=\"padding:12px;background:rgba(0,188,212,.05);border-left:3px solid #00bcd4;border-radius:6px;\">\n    <div style=\"font-size:13px;color:#00bcd4;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:8px;\">⚖️ Normes & Références</div>\n    <div style=\"font-size:12px;color:#cfd8dc;line-height:1.8;\">\n      <div><strong>EN 50160 :</strong> Tension ± 10%, f ± 1%, THD < 8%</div>\n      <div><strong>IEEE 1159 :</strong> Déséquilibre tension < 2%</div>\n      <div><strong>NEMA MG-1 :</strong> Déséquilibre courant moteur < 5%</div>\n      <div><strong>IEC 61557-12 :</strong> Précision PM2230 classe 0.5</div>\n      <div><strong>IEC 61000-4-30 :</strong> Méthodologie de mesure QE</div>\n    </div>\n  </div>\n</div>",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 410,
+        "y": 4220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "69a59aec82847c1b",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "cd8b54a7966d252c",
+        "name": "Bandeau THD",
+        "order": 3,
+        "width": 24,
+        "height": 3,
+        "format": "<div style=\"display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:6px;\">\n  <div class=\"kpi-tile {{ msg.payload.THD_V<5?'ok':(msg.payload.THD_V<8?'warn':'err') }}\" style=\"text-align:center;\">\n    <div class=\"label\">THD Tension</div>\n    <div class=\"value\">{{msg.payload.THD_V|number:2}}<small>%</small></div>\n    <div class=\"sub\">Limite EN 50160 : 8%</div>\n  </div>\n  <div class=\"kpi-tile {{ msg.payload.THD_I<15?'ok':(msg.payload.THD_I<25?'warn':'err') }}\" style=\"text-align:center;\">\n    <div class=\"label\">THD Courant</div>\n    <div class=\"value\">{{msg.payload.THD_I|number:2}}<small>%</small></div>\n    <div class=\"sub\">Limite IEEE 519 : 15%</div>\n  </div>\n  <div class=\"kpi-tile {{ (msg.payload.Hz>49.5&&msg.payload.Hz<50.5)?'ok':'warn' }}\" style=\"text-align:center;\">\n    <div class=\"label\">Fréquence Réseau</div>\n    <div class=\"value\">{{msg.payload.Hz|number:2}}<small>Hz</small></div>\n    <div class=\"sub\">Nominal : 50 Hz ± 1%</div>\n  </div>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1780,
+        "y": 3420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fcd8bf3a5a78bdc6",
+        "type": "ui_template",
+        "z": "3fcddd7b2d8eaf37",
+        "group": "grp_p_phases",
+        "name": "Tableau Puissances",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "format": "",
+        "storeOutMessages": false,
+        "fwdInMessages": false,
+        "templateScope": "local",
+        "x": 1800,
+        "y": 3360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c5e2198d1d9ca63",
+        "type": "link out",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historian Data",
+        "mode": "link",
+        "links": [
+            "643b96ff24094d4c"
+        ],
+        "x": 1725,
+        "y": 2620,
+        "wires": []
+    },
+    {
+        "id": "384d0f9561e56fcf",
+        "type": "link out",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historian Events",
+        "mode": "link",
+        "links": [
+            "260f73f47c1c0c75"
+        ],
+        "x": 1715,
+        "y": 2420,
+        "wires": []
+    },
+    {
+        "id": "f4924bd2c22a08c5",
+        "type": "influxdb batch",
+        "z": "3fcddd7b2d8eaf37",
+        "influxdb": "93a50c926367806e",
+        "precision": "",
+        "retentionPolicy": "",
+        "name": "InfluxDB v2 Long-Schema (batch)",
+        "database": "pm2230_raw",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "pm2230",
+        "bucket": "pm2230_raw",
+        "x": 2200,
+        "y": 2720,
+        "wires": []
+    },
+    {
+        "id": "660a47fb943b4ee8",
+        "type": "link out",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historian Data (MQTT)",
+        "mode": "link",
+        "links": [
+            "418d53875ce87357"
+        ],
+        "x": 1715,
+        "y": 2560,
+        "wires": []
+    },
+    {
+        "id": "13c8085b55954e0c",
+        "type": "modbus-read",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Lecture THD PM2230 [21300-21327]",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "3",
+        "dataType": "HoldingRegister",
+        "adr": "3868",
+        "quantity": "2",
+        "rate": "2",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "modbus_pm2230_scada",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 440,
+        "y": 1620,
+        "wires": [
+            [
+                "a403580efef3c55d"
+            ],
+            [
+                "7fba61567fe99617"
+            ]
+        ],
+        "icon": "node-red-contrib-modbus/modbus-icon.png"
+    },
+    {
+        "id": "a403580efef3c55d",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Decode THD (triangle)",
+        "func": "// === Decode THD - reseau TRIANGLE sans neutre (PM2230) ===\n// Lecture brute : 28 registres depuis l'adresse 21300\n// Layout (float32 big-endian, 2 registres par valeur) :\n//   Bloc COURANT (base 21300) :\n//     offset 0  : THD Current A  (reg 21300-21301)\n//     offset 2  : THD Current B  (reg 21302-21303)\n//     offset 4  : THD Current C  (reg 21304-21305)\n//   Bloc TENSION COMPOSEE (base 21300) :\n//     offset 22 : THD Voltage A-B (reg 21322-21323)  <-- U12\n//     offset 24 : THD Voltage B-C (reg 21324-21325)  <-- U23\n//     offset 26 : THD Voltage C-A (reg 21326-21327)  <-- U31\n// NB: en triangle, les THD tension phase-neutre (21330+) ne sont pas pertinents.\n\nfunction f32(arr, i) {\n    if (!arr || arr.length < i + 2) return 0;\n    const b = Buffer.alloc(4);\n    b.writeUInt16BE(arr[i]   || 0, 0);\n    b.writeUInt16BE(arr[i+1] || 0, 2);\n    const v = b.readFloatBE(0);\n    return Number.isFinite(v) ? v : 0;\n}\n\nconst r = msg.payload;\nflow.set('lastSeen_thd', Date.now());\n\n// THD Tension composee (U12, U23, U31)\n// On garde les noms THD_Va/Vb/Vc pour compatibilite avec fn_kpi_aggregate,\n// mais ils representent ici U12, U23, U31 (et non phase-neutre).\nconst THD_Va = f32(r, 22);  // U12 (A-B)\nconst THD_Vb = f32(r, 24);  // U23 (B-C)\nconst THD_Vc = f32(r, 26);  // U31 (C-A)\n\n// THD Courant phase A, B, C\nconst THD_Ia = f32(r, 0);\nconst THD_Ib = f32(r, 2);\nconst THD_Ic = f32(r, 4);\n\n// Moyennes\nconst THD_Vavg = (THD_Va + THD_Vb + THD_Vc) / 3;\nconst THD_Iavg = (THD_Ia + THD_Ib + THD_Ic) / 3;\n\n// Stockage dans le flow context\nflow.set('THD_Va', THD_Va);\nflow.set('THD_Vb', THD_Vb);\nflow.set('THD_Vc', THD_Vc);\nflow.set('THD_Ia', THD_Ia);\nflow.set('THD_Ib', THD_Ib);\nflow.set('THD_Ic', THD_Ic);\nflow.set('THD_Vavg', THD_Vavg);\nflow.set('THD_Iavg', THD_Iavg);\n\nnode.status({fill:'green', shape:'dot',\n    text:`U:${THD_Vavg.toFixed(2)}%  I:${THD_Iavg.toFixed(2)}%`});\n\nreturn [\n    { topic:'THD_U', payload: THD_Vavg },\n    { topic:'THD_I', payload: THD_Iavg },\n    { payload: {\n        THD_Va: THD_Va, THD_Vb: THD_Vb, THD_Vc: THD_Vc,\n        THD_Ia: THD_Ia, THD_Ib: THD_Ib, THD_Ic: THD_Ic\n    }}\n];\n",
+        "outputs": 3,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1620,
+        "wires": [
+            [
+                "1992c51d29144e86",
+                "2438ade53903f309"
+            ],
+            [
+                "1ff44817065a4fec",
+                "2438ade53903f309"
+            ],
+            [
+                "157bec27147a4306",
+                "a581f1b74c77a4d4",
+                "72352946d09b101c",
+                "688e81ae33ffbcb8",
+                "c9625a51f063977d",
+                "317bdfc002f1ad86",
+                "e8c1ff8744b2c9df"
+            ]
+        ]
+    },
+    {
+        "id": "1992c51d29144e86",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD U",
+        "group": "cd8b54a7966d252c",
+        "order": 6,
+        "width": 12,
+        "height": 6,
+        "gtype": "gage",
+        "title": "THD Tension composée (U)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 15,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 5,
+        "seg2": 8,
+        "diff": false,
+        "className": "",
+        "x": 1670,
+        "y": 1540,
+        "wires": []
+    },
+    {
+        "id": "1ff44817065a4fec",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD I",
+        "group": "cd8b54a7966d252c",
+        "order": 9,
+        "width": 12,
+        "height": 6,
+        "gtype": "gage",
+        "title": "THD Courant",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 40,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 15,
+        "seg2": 25,
+        "diff": false,
+        "className": "",
+        "x": 1670,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "157bec27147a4306",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD U12 (A-B)",
+        "group": "cd8b54a7966d252c",
+        "order": 15,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "THD U12 (A-B)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 15,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 5,
+        "seg2": 8,
+        "diff": false,
+        "className": "",
+        "x": 1710,
+        "y": 1740,
+        "wires": []
+    },
+    {
+        "id": "a581f1b74c77a4d4",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD U23 (B-C)",
+        "group": "cd8b54a7966d252c",
+        "order": 18,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "THD U23 (B-C)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 15,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 5,
+        "seg2": 8,
+        "diff": false,
+        "className": "",
+        "x": 1710,
+        "y": 1820,
+        "wires": []
+    },
+    {
+        "id": "72352946d09b101c",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD U31 (C-A)",
+        "group": "cd8b54a7966d252c",
+        "order": 23,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "THD U31 (C-A)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 15,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 5,
+        "seg2": 8,
+        "diff": false,
+        "className": "",
+        "x": 1710,
+        "y": 1780,
+        "wires": []
+    },
+    {
+        "id": "688e81ae33ffbcb8",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD I1 (phase A)",
+        "group": "cd8b54a7966d252c",
+        "order": 26,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "THD I1 (phase A)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 40,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 15,
+        "seg2": 25,
+        "diff": false,
+        "className": "",
+        "x": 1710,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "c9625a51f063977d",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD I2 (phase B)",
+        "group": "cd8b54a7966d252c",
+        "order": 29,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "THD I2 (phase B)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 40,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 15,
+        "seg2": 25,
+        "diff": false,
+        "className": "",
+        "x": 1710,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "317bdfc002f1ad86",
+        "type": "ui_gauge",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD I3 (phase C)",
+        "group": "cd8b54a7966d252c",
+        "order": 32,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "THD I3 (phase C)",
+        "label": "%",
+        "format": "{{value|number:2}}",
+        "min": 0,
+        "max": 40,
+        "colors": [
+            "#4caf50",
+            "#ff9800",
+            "#f44336"
+        ],
+        "seg1": 15,
+        "seg2": 25,
+        "diff": false,
+        "className": "",
+        "x": 1710,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "2438ade53903f309",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Historique THD",
+        "group": "e8670fa886caac81",
+        "order": 3,
+        "width": 24,
+        "height": 7,
+        "label": "THD Tension composée / Courant (%)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Aucune donnée...",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": "",
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#00bcd4",
+            "#ff9800",
+            "#9c27b0",
+            "#4caf50",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e8c1ff8744b2c9df",
+        "type": "function",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "Split THD par phase -> chart",
+        "func": "const p = msg.payload || {};\n// En triangle : THD_Va/Vb/Vc representent en realite U12/U23/U31\nreturn [\n  { topic: 'U12', payload: p.THD_Va },\n  { topic: 'U23', payload: p.THD_Vb },\n  { topic: 'U31', payload: p.THD_Vc },\n  { topic: 'I1',  payload: p.THD_Ia },\n  { topic: 'I2',  payload: p.THD_Ib },\n  { topic: 'I3',  payload: p.THD_Ic }\n];\n",
+        "outputs": 6,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1120,
+        "y": 1880,
+        "wires": [
+            [
+                "24727580560b3a5b"
+            ],
+            [
+                "24727580560b3a5b"
+            ],
+            [
+                "24727580560b3a5b"
+            ],
+            [
+                "24727580560b3a5b"
+            ],
+            [
+                "24727580560b3a5b"
+            ],
+            [
+                "24727580560b3a5b"
+            ]
+        ]
+    },
+    {
+        "id": "24727580560b3a5b",
+        "type": "ui_chart",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THD par phase",
+        "group": "cd8b54a7966d252c",
+        "order": 11,
+        "width": 24,
+        "height": 8,
+        "label": "THD par phase U12/U23/U31 et I1/I2/I3 (%)",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "",
+        "removeOlder": "10",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1976d2",
+            "#0288d1",
+            "#00acc1",
+            "#f57c00",
+            "#e64a19",
+            "#c62828",
+            "#000000",
+            "#000000",
+            "#000000"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1700,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7fba61567fe99617",
+        "type": "debug",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "THDdebug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 710,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "da9c9eca4110c3fd",
+        "type": "debug",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b824b56611a63823",
+        "type": "ui_spacer",
+        "z": "3fcddd7b2d8eaf37",
+        "name": "spacer",
+        "group": "grp_v_jauges_ln",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "grp_ov_header",
+        "type": "ui_group",
+        "name": "Header",
+        "tab": "ui_tab_overview",
+        "order": 1,
+        "disp": false,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "modbus_pm2230_scada",
+        "type": "modbus-client",
+        "name": "PM2230 via Ebyte NA111",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": false,
+        "tcpHost": "200.200.200.247",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "",
+        "serialConnectionDelay": "",
+        "serialAsciiResponseStartDelimiter": "",
+        "unit_id": 3,
+        "commandDelay": 1,
+        "clientTimeout": 3000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "grp_ov_kpi",
+        "type": "ui_group",
+        "name": "Indicateurs clés",
+        "tab": "ui_tab_overview",
+        "order": 2,
+        "disp": false,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_ov_synthese",
+        "type": "ui_group",
+        "name": "Synthèse temps réel",
+        "tab": "ui_tab_overview",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_ov_status",
+        "type": "ui_group",
+        "name": "État système",
+        "tab": "ui_tab_overview",
+        "order": 5,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_ov_chart",
+        "type": "ui_group",
+        "name": "Tendance Puissance Active",
+        "tab": "ui_tab_overview",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_i_jauges",
+        "type": "ui_group",
+        "name": "Jauges Courants - Temps Réel",
+        "tab": "ui_tab_courants",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_i_details",
+        "type": "ui_group",
+        "name": "Détails & Déséquilibre",
+        "tab": "ui_tab_courants",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_i_table",
+        "type": "ui_group",
+        "name": "Statistiques",
+        "tab": "ui_tab_courants",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_i_chart",
+        "type": "ui_group",
+        "name": "Historisation Courants",
+        "tab": "ui_tab_courants",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_v_jauges_ll",
+        "type": "ui_group",
+        "name": "Tensions Composées (Ligne-Ligne)",
+        "tab": "ui_tab_tensions",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_v_jauges_ln",
+        "type": "ui_group",
+        "name": "Tensions Simples (Phase-Neutre)",
+        "tab": "ui_tab_tensions",
+        "order": 2,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_v_phasor",
+        "type": "ui_group",
+        "name": "Diagramme de Fresnel",
+        "tab": "ui_tab_tensions",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_v_details",
+        "type": "ui_group",
+        "name": "Analyse Tensions",
+        "tab": "ui_tab_tensions",
+        "order": 4,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_v_chart",
+        "type": "ui_group",
+        "name": "Historisation Tensions",
+        "tab": "ui_tab_tensions",
+        "order": 5,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_p_jauges",
+        "type": "ui_group",
+        "name": "Puissances Totales",
+        "tab": "ui_tab_puissances",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_p_energie",
+        "type": "ui_group",
+        "name": "Énergie & Facteur de Puissance",
+        "tab": "ui_tab_puissances",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_p_triangle",
+        "type": "ui_group",
+        "name": "Triangle des Puissances",
+        "tab": "ui_tab_puissances",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_p_phases",
+        "type": "ui_group",
+        "name": "Puissances par Phase",
+        "tab": "ui_tab_puissances",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_p_chart",
+        "type": "ui_group",
+        "name": "Historisation Puissances",
+        "tab": "ui_tab_puissances",
+        "order": 5,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cd8b54a7966d252c",
+        "type": "ui_group",
+        "name": "THD & Distorsion",
+        "tab": "a5f4a7f8114908d5",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "disabled": false,
+        "className": ""
+    },
+    {
+        "id": "e2e1cc41c095769e",
+        "type": "ui_group",
+        "name": "Indice Qualité",
+        "tab": "a5f4a7f8114908d5",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "disabled": false
+    },
+    {
+        "id": "ac4e4e1b0cd684b9",
+        "type": "ui_group",
+        "name": "Déséquilibres",
+        "tab": "a5f4a7f8114908d5",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "disabled": false
+    },
+    {
+        "id": "grp_h_chart1",
+        "type": "ui_group",
+        "name": "Courbe Tensions (long terme)",
+        "tab": "ui_tab_historique",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_h_chart2",
+        "type": "ui_group",
+        "name": "Courbe Courants (long terme)",
+        "tab": "ui_tab_historique",
+        "order": 2,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_h_chart3",
+        "type": "ui_group",
+        "name": "Courbe Puissances (long terme)",
+        "tab": "ui_tab_historique",
+        "order": 3,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_h_chart4",
+        "type": "ui_group",
+        "name": "Courbe Fréquence & Énergie",
+        "tab": "ui_tab_historique",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_d_comm",
+        "type": "ui_group",
+        "name": "Communication Modbus",
+        "tab": "ui_tab_diagnostic",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_d_device",
+        "type": "ui_group",
+        "name": "Identification Appareil",
+        "tab": "ui_tab_diagnostic",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_d_health",
+        "type": "ui_group",
+        "name": "Santé du Système",
+        "tab": "ui_tab_diagnostic",
+        "order": 3,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_d_logs",
+        "type": "ui_group",
+        "name": "Journal Événements",
+        "tab": "ui_tab_diagnostic",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_m_jauges",
+        "type": "ui_group",
+        "name": "Caractéristiques Moteur",
+        "tab": "ui_tab_moteur",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_m_etat",
+        "type": "ui_group",
+        "name": "État de Fonctionnement",
+        "tab": "ui_tab_moteur",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_m_courbe_tn",
+        "type": "ui_group",
+        "name": "Point de Fonctionnement T(N)",
+        "tab": "ui_tab_moteur",
+        "order": 3,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_m_chart",
+        "type": "ui_group",
+        "name": "Évolution Vitesse & Couple",
+        "tab": "ui_tab_moteur",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_a_synthese",
+        "type": "ui_group",
+        "name": "Synthèse Alarmes",
+        "tab": "ui_tab_alarmes",
+        "order": 1,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "grp_a_journal",
+        "type": "ui_group",
+        "name": "Journal Alarmes Actives",
+        "tab": "ui_tab_alarmes",
+        "order": 2,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_a_historique",
+        "type": "ui_group",
+        "name": "Historique Alarmes (24h)",
+        "tab": "ui_tab_alarmes",
+        "order": 3,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "grp_param_moteur",
+        "type": "ui_group",
+        "name": "Paramètres Moteur",
+        "tab": "ui_tab_params",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_param_seuils",
+        "type": "ui_group",
+        "name": "Seuils d'Alarme",
+        "tab": "ui_tab_params",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false
+    },
+    {
+        "id": "grp_param_info",
+        "type": "ui_group",
+        "name": "Informations Système",
+        "tab": "ui_tab_params",
+        "order": 3,
+        "disp": true,
+        "width": "24",
+        "collapse": false
+    },
+    {
+        "id": "93a50c926367806e",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": 8086,
+        "protocol": "http",
+        "database": "pm2230_raw",
+        "name": "OCP",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://127.0.0.1:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "e8670fa886caac81",
+        "type": "ui_group",
+        "name": "Historisation THD",
+        "tab": "a5f4a7f8114908d5",
+        "order": 4,
+        "disp": true,
+        "width": "24",
+        "collapse": false,
+        "disabled": false
+    },
+    {
+        "id": "ui_tab_overview",
+        "type": "ui_tab",
+        "name": "Vue d'ensemble",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_courants",
+        "type": "ui_tab",
+        "name": "Courants",
+        "icon": "bolt",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_tensions",
+        "type": "ui_tab",
+        "name": "Tensions",
+        "icon": "power",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_puissances",
+        "type": "ui_tab",
+        "name": "Puissances",
+        "icon": "trending_up",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a5f4a7f8114908d5",
+        "type": "ui_tab",
+        "name": "Qualité d'Énergie",
+        "icon": "analytics",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_historique",
+        "type": "ui_tab",
+        "name": "Historisation",
+        "icon": "timeline",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_diagnostic",
+        "type": "ui_tab",
+        "name": "Diagnostic",
+        "icon": "search",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_moteur",
+        "type": "ui_tab",
+        "name": "Moteur Asynchrone",
+        "icon": "settings",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_alarmes",
+        "type": "ui_tab",
+        "name": "Alarmes",
+        "icon": "warning",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ui_tab_params",
+        "type": "ui_tab",
+        "name": "Paramètres",
+        "icon": "tune",
+        "order": 10,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f7c879b69037a075",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6",
+            "node-red-contrib-modbus": "5.45.2",
+            "node-red-contrib-influxdb": "0.7.0"
+        }
+    }
+]
