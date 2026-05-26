@@ -13,15 +13,8 @@
 #include "motors.h"
 #include "controller.h"
 
-// ═══════════════════════════════════════════════════════════════
-// VARIABLES GLOBALES
-// ═══════════════════════════════════════════════════════════════
-
-// Timing
 hw_timer_t *controlTimer = NULL;
 volatile bool controlTick = false;
-
-// États système
 enum SystemState {
   STATE_INIT,
   STATE_CALIBRATION,
@@ -31,8 +24,6 @@ enum SystemState {
 };
 
 SystemState currentState = STATE_INIT;
-
-// Télémétrie
 uint32_t lastTelemetryTime = 0;
 
 void processSerialCommands() {
@@ -77,17 +68,8 @@ void processSerialCommands() {
 #endif
 }
 
-// ═══════════════════════════════════════════════════════════════
-// INTERRUPTION TIMER (1 kHz)
-// ═══════════════════════════════════════════════════════════════
-
 void IRAM_ATTR onControlTimer() {
   controlTick = true;
-}
-
-// ═══════════════════════════════════════════════════════════════
-// SETUP
-// ═══════════════════════════════════════════════════════════════
 
 void setup() {
   #if DEBUG_SERIAL
@@ -97,10 +79,6 @@ void setup() {
     Serial.println("║  ROBOT AUTO-ÉQUILIBRANT v1.0         ║");
     Serial.println("╚═══════════════════════════════════════╝\n");
   #endif
-  
-  // ───────────────────────────────────────────────────────────
-  // INITIALISATION MODULES
-  // ───────────────────────────────────────────────────────────
   
   DEBUG_PRINTLN("[1/4] Initialisation moteurs...");
   motors.begin();
@@ -128,10 +106,6 @@ void setup() {
   
   DEBUG_PRINTLN("\n✓ Initialisation complète !\n");
   
-  // ───────────────────────────────────────────────────────────
-  // ATTENTE STABILISATION
-  // ───────────────────────────────────────────────────────────
-  
   DEBUG_PRINTLN("Placer robot vertical. Démarrage dans 3s...");
   delay(3000);
   
@@ -139,17 +113,9 @@ void setup() {
   DEBUG_PRINTLN("DÉMARRAGE CONTRÔLE\n");
 }
 
-// ═══════════════════════════════════════════════════════════════
-// BOUCLE PRINCIPALE
-// ═══════════════════════════════════════════════════════════════
 
 void loop() {
   processSerialCommands();
-  
-  // ───────────────────────────────────────────────────────────
-  // BOUCLE CONTRÔLE À 1 kHz (Prioritaire)
-  // ───────────────────────────────────────────────────────────
-  
   static float lastAngle = 0.0f;
   static float lastAngularVel = 0.0f;
   static float lastControlOutput = 0.0f;
@@ -162,15 +128,11 @@ void loop() {
     uint32_t now = micros();
     lastLoopDt = now - lastTickTime;
     lastTickTime = now;
-
-    // 1. LECTURE CAPTEURS
     imu.update();
     float angle = imu.getAngle();
     float angularVel = imu.getAngularVelocity();
     lastAngle = angle;
     lastAngularVel = angularVel;
-
-    // 2. SÉCURITÉ - Arrêt si inclinaison > limite
     if (fabs(angle * RAD_TO_DEG) > MAX_TILT_ANGLE) {
       if (currentState != STATE_EMERGENCY_STOP) {
         currentState = STATE_EMERGENCY_STOP;
@@ -179,29 +141,16 @@ void loop() {
       }
       return;
     }
-
-    // 3. CALCUL CONTRÔLE
     if (currentState == STATE_RUNNING) {
       float controlOutput = controller.compute(angle, angularVel, CONTROL_DT);
       lastControlOutput = controlOutput;
-
-      // 4. COMMANDE MOTEURS (mise à jour de la consigne uniquement)
       motors.setSpeed(controlOutput);
     }
   }
-
-  // Génération des impulsions moteur hors ISR — non bloquant.
   motors.step();
-
-  // ───────────────────────────────────────────────────────────
-  // TÉLÉMÉTRIE (TELEMETRY_FREQ Hz - rate-limited pour ne pas saturer l'UART)
-  // ───────────────────────────────────────────────────────────
-
 #if DEBUG_SERIAL
   if (millis() - lastTelemetryTime > (1000 / TELEMETRY_FREQ)) {
     lastTelemetryTime = millis();
-
-    // Format CSV: angle_deg, vel_deg_s, u, loop_dt_us
     Serial.print(lastAngle * RAD_TO_DEG, 3);
     Serial.print(",");
     Serial.print(lastAngularVel * RAD_TO_DEG, 2);
@@ -211,16 +160,11 @@ void loop() {
     Serial.println(lastLoopDt);
   }
 #endif
-  // ───────────────────────────────────────────────────────────
-  // GESTION ÉTATS (Si besoin)
-  // ───────────────────────────────────────────────────────────
   
   if (currentState == STATE_EMERGENCY_STOP) {
-    // LED blink erreur (si pin LED définie)
     static uint32_t lastBlink = 0;
     if (millis() - lastBlink > 250) {
       lastBlink = millis();
-      // digitalWrite(LED_PIN, !digitalRead(LED_PIN));
     }
   }
 }
